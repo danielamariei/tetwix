@@ -1,2 +1,2 @@
-multiplayer-tetris
+tetwix
 ==================
