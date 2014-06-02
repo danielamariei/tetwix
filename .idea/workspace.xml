@@ -5,13 +5,13 @@
     <ignored path="TeTwix.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/swipe-type.js" changelist="ce46ffda-aad2-4acb-b461-8fc58e577aef" time="1399874045046" ignored="false" />
-    <file path="/index.html" changelist="ce46ffda-aad2-4acb-b461-8fc58e577aef" time="1401349675333" ignored="false" />
-    <file path="/index-style.css" changelist="ce46ffda-aad2-4acb-b461-8fc58e577aef" time="1401365173563" ignored="false" />
+    <file path="/index.html" changelist="ce46ffda-aad2-4acb-b461-8fc58e577aef" time="1401639996504" ignored="false" />
+    <file path="/index-style.css" changelist="ce46ffda-aad2-4acb-b461-8fc58e577aef" time="1401440485263" ignored="false" />
     <file path="/app.js" changelist="ce46ffda-aad2-4acb-b461-8fc58e577aef" time="1399876371873" ignored="false" />
     <file path="/index.js" changelist="ce46ffda-aad2-4acb-b461-8fc58e577aef" time="1399877106172" ignored="false" />
     <file path="$PROJECT_DIR$/.idea/workspace.xml" changelist="ce46ffda-aad2-4acb-b461-8fc58e577aef" time="1400223965925" ignored="false" />
     <file path="/swipe-detection.js" changelist="ce46ffda-aad2-4acb-b461-8fc58e577aef" time="1399881765279" ignored="false" />
-    <file path="/game.js" changelist="ce46ffda-aad2-4acb-b461-8fc58e577aef" time="1401382666545" ignored="false" />
+    <file path="/game.js" changelist="ce46ffda-aad2-4acb-b461-8fc58e577aef" time="1401711144017" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +73,7 @@
       <file leaf-file-name="game.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/javascripts/game.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="108" column="3" selection-start="2857" selection-end="2857" vertical-scroll-proportion="0.12103408">
+            <state line="348" column="47" selection-start="9027" selection-end="9027" vertical-scroll-proportion="0.5346651">
               <folding />
             </state>
           </provider>
@@ -82,7 +82,7 @@
       <file leaf-file-name="index-style.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/stylesheets/index-style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="0" selection-start="103" selection-end="143" vertical-scroll-proportion="0.0">
+            <state line="8" column="29" selection-start="192" selection-end="192" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -91,7 +91,7 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="9" selection-start="192" selection-end="192" vertical-scroll-proportion="-5.677419">
+            <state line="9" column="24" selection-start="244" selection-end="244" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -112,8 +112,8 @@
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/public/javascripts/swipe-detection.js" />
-        <option value="$PROJECT_DIR$/views/index.html" />
         <option value="$PROJECT_DIR$/public/stylesheets/index-style.css" />
+        <option value="$PROJECT_DIR$/views/index.html" />
         <option value="$PROJECT_DIR$/public/javascripts/game.js" />
       </list>
     </option>
@@ -179,6 +179,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -278,7 +279,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -298,8 +298,8 @@
     <property name="restartRequiresConfirmation" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -373,7 +373,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="73" y="-9" width="1856" height="1098" extended-state="0" />
+    <frame x="73" y="-9" width="1856" height="1098" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -467,8 +467,13 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/public/javascripts/game.js</url>
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/public/javascripts/game.js</url>
+          <line>83</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="1" />
+      <option name="time" value="2" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -539,23 +544,23 @@
         <state line="8" column="2" selection-start="152" selection-end="152" vertical-scroll-proportion="0.19954649" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/index.html">
+    <entry file="file://$PROJECT_DIR$/public/stylesheets/index-style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="9" selection-start="192" selection-end="192" vertical-scroll-proportion="-5.677419">
+        <state line="8" column="29" selection-start="192" selection-end="192" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/stylesheets/index-style.css">
+    <entry file="file://$PROJECT_DIR$/views/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="0" selection-start="103" selection-end="143" vertical-scroll-proportion="0.0">
+        <state line="9" column="24" selection-start="244" selection-end="244" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/javascripts/game.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="108" column="3" selection-start="2857" selection-end="2857" vertical-scroll-proportion="0.12103408">
+        <state line="348" column="47" selection-start="9027" selection-end="9027" vertical-scroll-proportion="0.5346651">
           <folding />
         </state>
       </provider>
