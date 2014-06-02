@@ -122,7 +122,9 @@ var game = {
             },
 
             eraseCell: function (r, c) {
+                Debug.LOG_LINE('eraseCell   ' + r + ' ' + c);
                 game.state.board.state[r][c].erase();
+                Debug.LOG_LINE('after eraseCell');
             },
 
             createCell: function (x, y) {
@@ -190,16 +192,16 @@ var PieceController = function (piece) {
         this.bottomRight = new Point(this.piece.cols, this.piece.rows);
 
         this.left = function () {
-            Debug.LOG_LINE('left ' + this.active);
+//            Debug.LOG_LINE('left ' + this.active);
             this.erase();
 
             if (this.available({x: this.topLeft.x - 1, y: this.topLeft.y})) {
-                Debug.LOG_LINE('left after if');
+//                Debug.LOG_LINE('left after if');
                 this.topLeft.left();
                 this.bottomRight.left();
             }
 
-            Debug.LOG_LINE(this.active);
+//            Debug.LOG_LINE(this.active + ' ' + this.topLeft.y + ' ' + this.topLeft.x);
             this.draw();
         };
 
@@ -216,7 +218,9 @@ var PieceController = function (piece) {
 
         };
         this.down = function () {
+//            Debug.LOG_LINE('peiceController.down()');
             this.erase();
+//            Debug.LOG_LINE('peiceController.down() -- after erase()');
             if (this.available({x: this.topLeft.x, y: this.topLeft.y + 1})) {
                 this.topLeft.down();
                 this.bottomRight.down();
@@ -246,7 +250,7 @@ var PieceController = function (piece) {
 
 
                         if (!game.state.board.isCellFree(topLeft.y + y, topLeft.x + x)) {
-                            Debug.LOG_LINE((topLeft.y + y) + ' '  + (topLeft.x + x));
+//                            Debug.LOG_LINE((topLeft.y + y) + ' ' + (topLeft.x + x));
                             return false;
                         }
                     }
@@ -270,7 +274,11 @@ var PieceController = function (piece) {
         this.erase = function () {
             for (var x = 0; x < this.piece.cols; ++x) {
                 for (var y = 0; y < this.piece.rows; ++y) {
-                    game.state.board.eraseCell(this.topLeft.y + y, this.topLeft.x + x);
+//                    Debug.LOG_LINE('before erase cell');
+                    if (this.piece.state[y][x] == 1) {
+                        game.state.board.eraseCell(this.topLeft.y + y, this.topLeft.x + x);
+                        Debug.LOG_LINE(y + ' ' + x);
+                    }
                 }
             }
         };
@@ -341,26 +349,29 @@ var Player = function () {
     var THIS = this;
     this.piece = new PieceController(PieceGenerator.generateRandomPiece());
 
-    this.play = function() {
-//        Debug.LOG_LINE('pieceControls.down()');
+    this.play = function () {
+        Debug.LOG_LINE('pieceControls.play()');
+
         if (!this.piece.active) {
             this.piece = new PieceController(PieceGenerator.generateRandomPiece());
             setTimeout(function () {
                 Debug.LOG_LINE('setTimeout 1');
                 THIS.play();
-            }, 300);
+            }, 400);
             return
-        };
+        }
+        ;
+
 
         this.piece.draw();
-
+        Debug.LOG_LINE('Player.play() -- after draw');
         this.piece.down();
-
+        Debug.LOG_LINE('Player.play() -- after down');
 
         setTimeout(function () {
             Debug.LOG_LINE('setTimeout 2');
             THIS.play();
-        }, 300);
+        }, 400);
     }
 
     this.down = function () {
@@ -368,10 +379,10 @@ var Player = function () {
 
     };
 
-    this.right = function() {
+    this.right = function () {
         this.piece.right();
     };
-    this.left = function() {
+    this.left = function () {
         this.piece.left();
     };
 
