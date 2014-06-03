@@ -25,22 +25,49 @@ var Debug = new Debugging();
 /* Tetriminos */
 var T = function () {
     this.color = '#8B008B';
-    this.rows = 4;
-    this.cols = 4;
+    this.rows = 3;
+    this.cols = 3;
     this.state =
         [
-            [0, 0, 0, 0],
-            [0, 0, 0, 0],
-            [0, 0, 1, 0],
-            [0, 1, 1, 1]
+            [0, 1, 0],
+            [1, 1, 1],
+            [0, 0, 0]
         ];
 
+    this.createArrayCopy = function (a) {
+        var b = [];
+        for (var i = 0; i < a.length; ++i) {
+            b[i] = [];
+            for (var j = 0; j < a[i].length; ++j) {
+                b[i][j] = a[i][j];
+            }
+        }
+
+        return b;
+    }
+
     this.rotateLeft = function () {
-        // to-do
+        var newState = this.createArrayCopy(this.state);
+
+        for (var i = 0; i < this.rows; ++i) {
+            for (var j = 0; j < this.cols; ++j) {
+                newState[this.rows - j - 1][i] = this.state[i][j];
+            }
+        }
+
+        this.state = newState;
     };
 
     this.rotateRight = function () {
+        var newState = this.createArrayCopy(this.state);
 
+        for (var i = 0; i < this.rows; ++i) {
+            for (var j = 0; j < this.cols; ++j) {
+                newState[j][this.rows - i - 1] = this.state[i][j];
+            }
+        }
+
+        this.state = newState;
     };
 };
 
@@ -56,7 +83,8 @@ var PieceGenerator = {
 var game = {
     cellSize: 15,
     rows: 20,
-    cols: 30,
+    cols: 40,
+    speed: 400,
     canvas: null,
     ctx: null,
 
@@ -72,6 +100,7 @@ var game = {
             Debug.LOG_LINE("after piece controller");
 
             Player1.play();
+            Player2.play();
         },
         pause: function () {
         },
@@ -106,6 +135,13 @@ var game = {
                         game.state.board.state[i][j].drawOutline("#888888");
                     }
                 }
+
+                for (var i = 0; i < 4; ++i) {
+                    for (var j = 0; j < 4; ++j) {
+                        game.state.board.state[i][j].drawOutline("#FFFFFF");
+                        game.state.board.state[i][game.cols - j - 1].drawOutline("#FFFFFF");
+                    }
+                }
             },
 
             isCellFree: function (r, c) {
@@ -122,9 +158,9 @@ var game = {
             },
 
             eraseCell: function (r, c) {
-                Debug.LOG_LINE('eraseCell   ' + r + ' ' + c);
+//                Debug.LOG_LINE('eraseCell   ' + r + ' ' + c);
                 game.state.board.state[r][c].erase();
-                Debug.LOG_LINE('after eraseCell');
+//                Debug.LOG_LINE('after eraseCell');
             },
 
             createCell: function (x, y) {
@@ -146,7 +182,6 @@ var game = {
                         game.ctx.clearRect(x + 1, y + 1, game.cellSize - 2, game.cellSize - 2);
                         cell.isFree = true;
                     },
-
 
                     toggle: function () {
                         if (cell.isFree) {
@@ -184,11 +219,16 @@ var game = {
 };
 
 
-var PieceController = function (piece) {
+var PieceController = function (piece, player) {
         this.active = true;
         this.piece = piece;
 
-        this.topLeft = new Point(0, 0);
+        if (player === 'Player1') {
+            this.topLeft = new Point(0, 0);
+        } else if (player === 'Player2') {
+            this.topLeft = new Point(game.cols - 4, 0);
+        }
+
         this.bottomRight = new Point(this.piece.cols, this.piece.rows);
 
         this.left = function () {
@@ -209,14 +249,31 @@ var PieceController = function (piece) {
             this.erase();
 
             if (this.available({x: this.topLeft.x + 1, y: this.topLeft.y})) {
-                Debug.LOG_LINE('right');
+//                Debug.LOG_LINE('right');
                 this.topLeft.right();
                 this.bottomRight.right();
+//            Debug.LOG_LINE(this.active + ' ' + this.topLeft.y + ' ' + this.topLeft.x);
+            } else {
+                Debug.LOG_LINE('right not available');
             }
 
             this.draw();
 
         };
+        this.rotateRight = function () {
+//            alert(1);
+            this.erase();
+//            alert(1);
+            this.piece.rotateRight();
+//            alert(1);
+            if (!this.available(this.topLeft)) {
+
+                this.piece.rotateLeft();
+            }
+//            alert(1);
+            this.draw();
+        }
+
         this.down = function () {
 //            Debug.LOG_LINE('peiceController.down()');
             this.erase();
@@ -225,7 +282,7 @@ var PieceController = function (piece) {
                 this.topLeft.down();
                 this.bottomRight.down();
             } else {
-                Debug.LOG_LINE('this.active = false');
+//                Debug.LOG_LINE('this.active = false');
                 this.active = false;
             }
 
@@ -234,7 +291,7 @@ var PieceController = function (piece) {
         };
 
         this.isOnBoard = function (r, c) {
-            return (r >= 0 && r < game.rows) && (c >= 0 && c < game.rows);
+            return (r >= 0 && r < game.rows) && (c >= 0 && c < game.cols);
         };
 
         this.available = function (topLeft, bottomRight) {
@@ -277,7 +334,7 @@ var PieceController = function (piece) {
 //                    Debug.LOG_LINE('before erase cell');
                     if (this.piece.state[y][x] == 1) {
                         game.state.board.eraseCell(this.topLeft.y + y, this.topLeft.x + x);
-                        Debug.LOG_LINE(y + ' ' + x);
+//                        Debug.LOG_LINE(y + ' ' + x);
                     }
                 }
             }
@@ -288,7 +345,7 @@ var PieceController = function (piece) {
             piece.draw('#c82124');
             setTimeout(function () {
                 piece.draw();
-            }, 1000);
+            }, game.speed);
 
         };
     }
@@ -333,45 +390,61 @@ document.onkeydown = function (e) {
     var dir = e.keyCode;
 
     switch (dir) {
-        case Keyboard.Player2.right:
+        case Keyboard.Player1.right:
             Player1.right();
             break;
-        case Keyboard.Player2.left:
+        case Keyboard.Player1.left:
             Player1.left();
             break;
-        case Keyboard.Player2.down:
+        case Keyboard.Player1.down:
             Player1.down();
+            break;
+        case Keyboard.Player1.up:
+            Player1.rotateRight();
+            break;
+        case Keyboard.Player2.right:
+            Player2.right();
+            break;
+        case Keyboard.Player2.up:
+            Player2.rotateRight();
+            break;
+        case Keyboard.Player2.left:
+            Player2.left();
+            break;
+        case Keyboard.Player2.down:
+            Player2.down();
             break;
     }
 };
 
-var Player = function () {
+var Player = function (player) {
     var THIS = this;
-    this.piece = new PieceController(PieceGenerator.generateRandomPiece());
+    this.player = player;
+    this.piece = new PieceController(PieceGenerator.generateRandomPiece(), this.player);
 
     this.play = function () {
-        Debug.LOG_LINE('pieceControls.play()');
+//        Debug.LOG_LINE('pieceControls.play()');
 
         if (!this.piece.active) {
-            this.piece = new PieceController(PieceGenerator.generateRandomPiece());
+            this.piece = new PieceController(PieceGenerator.generateRandomPiece(), this.player);
             setTimeout(function () {
-                Debug.LOG_LINE('setTimeout 1');
+//                Debug.LOG_LINE('setTimeout 1');
                 THIS.play();
-            }, 400);
+            }, game.speed);
             return
         }
         ;
 
 
         this.piece.draw();
-        Debug.LOG_LINE('Player.play() -- after draw');
+//        Debug.LOG_LINE('Player.play() -- after draw');
         this.piece.down();
-        Debug.LOG_LINE('Player.play() -- after down');
+//        Debug.LOG_LINE('Player.play() -- after down');
 
         setTimeout(function () {
-            Debug.LOG_LINE('setTimeout 2');
+//            Debug.LOG_LINE('setTimeout 2');
             THIS.play();
-        }, 400);
+        }, game.speed);
     }
 
     this.down = function () {
@@ -382,13 +455,20 @@ var Player = function () {
     this.right = function () {
         this.piece.right();
     };
+
     this.left = function () {
         this.piece.left();
     };
 
+    this.rotateRight = function () {
+//        alert(1);
+        this.piece.rotateRight();
+    };
+
 };
 
-var Player1 = new Player();
+var Player1 = new Player('Player1');
+var Player2 = new Player('Player2');
 
 
 game.controls.startNewGame();
