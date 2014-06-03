@@ -11,7 +11,7 @@
     <file path="/index.js" changelist="ce46ffda-aad2-4acb-b461-8fc58e577aef" time="1399877106172" ignored="false" />
     <file path="$PROJECT_DIR$/.idea/workspace.xml" changelist="ce46ffda-aad2-4acb-b461-8fc58e577aef" time="1400223965925" ignored="false" />
     <file path="/swipe-detection.js" changelist="ce46ffda-aad2-4acb-b461-8fc58e577aef" time="1399881765279" ignored="false" />
-    <file path="/game.js" changelist="ce46ffda-aad2-4acb-b461-8fc58e577aef" time="1401808923745" ignored="false" />
+    <file path="/game.js" changelist="ce46ffda-aad2-4acb-b461-8fc58e577aef" time="1401818204707" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +73,7 @@
       <file leaf-file-name="game.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/javascripts/game.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="65" column="37" selection-start="1471" selection-end="1471" vertical-scroll-proportion="0.7505669">
+            <state line="21" column="2" selection-start="414" selection-end="414" vertical-scroll-proportion="0.04347826">
               <folding />
             </state>
           </provider>
@@ -104,6 +104,13 @@
       <setting name="OPEN_NEW_TAB" value="false" />
     </FindUsagesManager>
   </component>
+  <component name="GradleLocalSettings">
+    <option name="expandStates">
+      <map>
+        <entry key="TeTwix" value="true" />
+      </map>
+    </option>
+  </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
@@ -119,10 +126,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="73" />
-    <option name="y" value="-9" />
-    <option name="width" value="1856" />
-    <option name="height" value="1098" />
+    <option name="x" value="1001" />
+    <option name="width" value="919" />
+    <option name="height" value="1080" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -373,11 +379,11 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="73" y="-9" width="1856" height="1098" extended-state="6" />
-    <editor active="true" />
+    <frame x="1001" y="0" width="919" height="1080" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3289941" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -391,7 +397,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16835018" sideWeight="0.66448087" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.35502958" sideWeight="0.66448087" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33551913" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -463,16 +469,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/public/javascripts/game.js</url>
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/public/javascripts/game.js</url>
-          <line>112</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
       <option name="time" value="2" />
     </breakpoint-manager>
   </component>
@@ -544,13 +540,6 @@
         <state line="8" column="2" selection-start="152" selection-end="152" vertical-scroll-proportion="0.19954649" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/stylesheets/index-style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="29" selection-start="192" selection-end="192" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="24" selection-start="244" selection-end="244" vertical-scroll-proportion="0.0">
@@ -558,9 +547,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/stylesheets/index-style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="29" selection-start="192" selection-end="192" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/javascripts/game.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="37" selection-start="1471" selection-end="1471" vertical-scroll-proportion="0.7505669">
+        <state line="21" column="2" selection-start="414" selection-end="414" vertical-scroll-proportion="0.04347826">
           <folding />
         </state>
       </provider>

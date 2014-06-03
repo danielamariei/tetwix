@@ -22,18 +22,20 @@ var Debugging = function () {
 var Debug = new Debugging();
 
 
-/* Tetriminos */
-var T = function () {
-    this.color = '#8B008B';
-    this.rows = 3;
-    this.cols = 3;
-    this.state =
-        [
-            [0, 1, 0],
-            [1, 1, 1],
-            [0, 0, 0]
-        ];
+/* The Tetriminos */
 
+var colors = {
+    cyan: '#00FFFF',
+    blue: '#0000FF',
+    orange: '#FFA500',
+    yellow: '#FFFF00',
+    lime: '#00FF00',
+    red: '#FF0000',
+    magenta: '#8B008B'
+};
+
+
+var Piece = function () {
     this.createArrayCopy = function (a) {
         var b = [];
         for (var i = 0; i < a.length; ++i) {
@@ -47,8 +49,8 @@ var T = function () {
     }
 
     this.rotateLeft = function () {
-        var newState = this.createArrayCopy(this.state);
 
+        var newState = this.createMatrix(this.rows, this.cols);
         for (var i = 0; i < this.rows; ++i) {
             for (var j = 0; j < this.cols; ++j) {
                 newState[this.rows - j - 1][i] = this.state[i][j];
@@ -56,11 +58,12 @@ var T = function () {
         }
 
         this.state = newState;
+        this.swapRowsWithCols();
     };
 
     this.rotateRight = function () {
-        var newState = this.createArrayCopy(this.state);
 
+        var newState = this.createMatrix(this.cols, this.rows);
         for (var i = 0; i < this.rows; ++i) {
             for (var j = 0; j < this.cols; ++j) {
                 newState[j][this.rows - i - 1] = this.state[i][j];
@@ -68,18 +71,195 @@ var T = function () {
         }
 
         this.state = newState;
+        this.swapRowsWithCols();
     };
+
+    this.createMatrix = function (rows, cols) {
+        var a = [];
+        for (var i = 0; i < rows; ++i) {
+            a[i] = [];
+            for (var j = 0; j < cols; ++j) {
+                a[i][j] = 0;
+            }
+        }
+
+        return a;
+    };
+
+    this.swapRowsWithCols = function () {
+        var aux = this.rows;
+        this.rows = this.cols;
+        this.cols = aux;
+    }
 };
 
 
-var PieceGenerator = {
-    generateRandomPiece: function () {
-        return new T();
-    }
-}
+/* The I tetrimino */
+var I = function () {
+    this.color = colors.cyan;
+    this.rows = 3;
+    this.cols = 4;
+    this.state =
+        [
+            [0, 0, 0, 0],
+            [1, 1, 1, 1],
+            [0, 0, 0, 0]
+        ];
 
+};
+
+/* Inherit from the base Piece */
+I.prototype = new Piece();
+
+
+/* The J tetrimino */
+var J = function () {
+    this.color = colors.blue;
+    this.rows = 2;
+    this.cols = 3;
+    this.state =
+        [
+            [1, 1, 1],
+            [0, 0, 1]
+        ];
+
+};
+
+/* Inherit from the base Piece */
+J.prototype = new Piece();
+
+
+/* The L tetrimino */
+var L = function () {
+    this.color = colors.orange;
+    this.rows = 2;
+    this.cols = 3;
+    this.state =
+        [
+            [1, 1, 1],
+            [1, 0, 0]
+        ];
+
+
+};
+/* Inherit from the base Piece */
+L.prototype = new Piece();
+
+/* The O tetrimino */
+var O = function () {
+    this.color = colors.yellow;
+    this.rows = 2;
+    this.cols = 2;
+    this.state =
+        [
+            [1, 1],
+            [1, 1]
+        ];
+
+    this.rotateRight = function () {
+    };
+
+    this.rotateRight = function () {
+    };
+
+};
+
+/* The S tetrimino */
+var S = function () {
+    this.color = colors.lime;
+    this.rows = 2;
+    this.cols = 3;
+    this.state =
+        [
+            [0, 1, 1],
+            [1, 1, 0]
+        ];
+
+};
+
+/* Inherit from the base Piece */
+S.prototype = new Piece();
+
+
+/* The T tetrimino */
+var T = function () {
+    this.color = colors.magenta;
+    this.rows = 3;
+    this.cols = 3;
+    this.state =
+        [
+            [0, 1, 0],
+            [1, 1, 1],
+            [0, 0, 0]
+        ];
+
+};
+
+/* Inherit from the base Piece */
+T.prototype = new Piece();
+
+
+/* The Z tetrimino */
+var Z = function () {
+    this.color = colors.red;
+    this.rows = 2;
+    this.cols = 3;
+    this.state =
+        [
+            [1, 1, 0],
+            [0, 1, 1]
+        ];
+
+};
+
+/* Inherit from the base Piece */
+Z.prototype = new Piece();
+
+
+var PieceGenerator = {
+    length: 7,
+    pieces: [
+        function () {
+            return new I();
+        },
+
+        function () {
+            return new J();
+        },
+
+        function () {
+            return new L();
+        },
+
+        function () {
+            return new O();
+        },
+
+        function () {
+            return new S();
+        },
+
+        function () {
+            return new T();
+        },
+
+        function () {
+            return new Z();
+        }
+    ],
+
+    generateRandomPiece: function () {
+        var random = Math.random() * PieceGenerator.length;
+        var i = Math.floor(random);
+        var piece = PieceGenerator.pieces[i]();
+
+        return piece;
+    }
+};
 
 /* The Tetris game */
+
+
 var game = {
     cellSize: 15,
     rows: 20,
@@ -116,6 +296,7 @@ var game = {
             state: null,
 
             init: function (numberOfPlayers) {
+//                alert(1);
                 game.canvas = document.getElementById("gameboard");
 
                 game.ctx = game.canvas.getContext("2d");
@@ -420,7 +601,9 @@ document.onkeydown = function (e) {
 var Player = function (player) {
     var THIS = this;
     this.player = player;
+
     this.piece = new PieceController(PieceGenerator.generateRandomPiece(), this.player);
+//    alert('ok');
 
     this.play = function () {
 //        Debug.LOG_LINE('pieceControls.play()');
@@ -466,8 +649,10 @@ var Player = function (player) {
     };
 
 };
-
+//alert(new T().toSource());
+//alert('before player 1');
 var Player1 = new Player('Player1');
+//alert('after player1');
 var Player2 = new Player('Player2');
 
 
