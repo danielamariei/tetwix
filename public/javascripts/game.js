@@ -7,6 +7,7 @@
  */
 
 
+/* Class that helps debugging */
 var Debugging = function () {
     this.output = document.getElementById('debugging');
     this.LOG = function (text) {
@@ -22,8 +23,9 @@ var Debugging = function () {
 var Debug = new Debugging();
 
 
-/* The Tetriminos */
+/* The tetriminos */
 
+/* The colors of the tetriminos */
 var colors = {
     cyan: '#00FFFF',
     blue: '#0000FF',
@@ -35,6 +37,7 @@ var colors = {
 };
 
 
+/* Base class for the tetriminos */
 var Piece = function () {
     this.createArrayCopy = function (a) {
         var b = [];
@@ -49,7 +52,6 @@ var Piece = function () {
     }
 
     this.rotateLeft = function () {
-
         var newState = this.createMatrix(this.rows, this.cols);
         for (var i = 0; i < this.rows; ++i) {
             for (var j = 0; j < this.cols; ++j) {
@@ -62,7 +64,6 @@ var Piece = function () {
     };
 
     this.rotateRight = function () {
-
         var newState = this.createMatrix(this.cols, this.rows);
         for (var i = 0; i < this.rows; ++i) {
             for (var j = 0; j < this.cols; ++j) {
@@ -105,7 +106,6 @@ var I = function () {
             [1, 1, 1, 1],
             [0, 0, 0, 0]
         ];
-
 };
 
 /* Inherit from the base Piece */
@@ -122,7 +122,6 @@ var J = function () {
             [1, 1, 1],
             [0, 0, 1]
         ];
-
 };
 
 /* Inherit from the base Piece */
@@ -139,11 +138,11 @@ var L = function () {
             [1, 1, 1],
             [1, 0, 0]
         ];
-
-
 };
+
 /* Inherit from the base Piece */
 L.prototype = new Piece();
+
 
 /* The O tetrimino */
 var O = function () {
@@ -161,8 +160,10 @@ var O = function () {
 
     this.rotateRight = function () {
     };
-
 };
+
+/* No need to inherit the base class */
+
 
 /* The S tetrimino */
 var S = function () {
@@ -174,7 +175,6 @@ var S = function () {
             [0, 1, 1],
             [1, 1, 0]
         ];
-
 };
 
 /* Inherit from the base Piece */
@@ -192,7 +192,6 @@ var T = function () {
             [1, 1, 1],
             [0, 0, 0]
         ];
-
 };
 
 /* Inherit from the base Piece */
@@ -209,13 +208,13 @@ var Z = function () {
             [1, 1, 0],
             [0, 1, 1]
         ];
-
 };
 
 /* Inherit from the base Piece */
 Z.prototype = new Piece();
 
 
+/* Offers functionality for generating random pieces */
 var PieceGenerator = {
     length: 7,
     pieces: [
@@ -257,14 +256,14 @@ var PieceGenerator = {
     }
 };
 
-/* The Tetris game */
+/* The Tetris game logic */
 
 
 var game = {
     cellSize: 15,
     rows: 20,
     cols: 40,
-    speed: 400,
+    speed: 1000,
     canvas: null,
     ctx: null,
 
@@ -275,15 +274,14 @@ var game = {
             Debug.LOG_LINE("after init");
             game.helpers.attachListeners();
             Debug.LOG_LINE("after attaching listeners");
-            var piece = PieceGenerator.generateRandomPiece();
-            var pieceController = new PieceController(piece);
-            Debug.LOG_LINE("after piece controller");
 
             Player1.play();
             Player2.play();
         },
+
         pause: function () {
         },
+
         resume: function () {
         }
     },
@@ -296,7 +294,6 @@ var game = {
             state: null,
 
             init: function (numberOfPlayers) {
-//                alert(1);
                 game.canvas = document.getElementById("gameboard");
 
                 game.ctx = game.canvas.getContext("2d");
@@ -339,14 +336,13 @@ var game = {
             },
 
             eraseCell: function (r, c) {
-//                Debug.LOG_LINE('eraseCell   ' + r + ' ' + c);
                 game.state.board.state[r][c].erase();
-//                Debug.LOG_LINE('after eraseCell');
             },
 
             createCell: function (x, y) {
                 var cell = {
                     isFree: true,
+                    dead: false,
 
                     drawOutline: function (color) {
                         game.ctx.strokeStyle = color;
@@ -413,27 +409,26 @@ var PieceController = function (piece, player) {
         this.bottomRight = new Point(this.piece.cols, this.piece.rows);
 
         this.left = function () {
-//            Debug.LOG_LINE('left ' + this.active);
+            if (!this.active) return;
+
             this.erase();
 
             if (this.available({x: this.topLeft.x - 1, y: this.topLeft.y})) {
-//                Debug.LOG_LINE('left after if');
                 this.topLeft.left();
                 this.bottomRight.left();
             }
 
-//            Debug.LOG_LINE(this.active + ' ' + this.topLeft.y + ' ' + this.topLeft.x);
             this.draw();
         };
 
         this.right = function () {
+            if (!this.active) return;
+
             this.erase();
 
             if (this.available({x: this.topLeft.x + 1, y: this.topLeft.y})) {
-//                Debug.LOG_LINE('right');
                 this.topLeft.right();
                 this.bottomRight.right();
-//            Debug.LOG_LINE(this.active + ' ' + this.topLeft.y + ' ' + this.topLeft.x);
             } else {
                 Debug.LOG_LINE('right not available');
             }
@@ -441,34 +436,38 @@ var PieceController = function (piece, player) {
             this.draw();
 
         };
+
         this.rotateRight = function () {
-//            alert(1);
+            if (!this.active) return;
+
             this.erase();
-//            alert(1);
             this.piece.rotateRight();
-//            alert(1);
+
             if (!this.available(this.topLeft)) {
 
                 this.piece.rotateLeft();
             }
-//            alert(1);
+
             this.draw();
         }
 
         this.down = function () {
-//            Debug.LOG_LINE('peiceController.down()');
+            if (!this.active) return;
+
             this.erase();
-//            Debug.LOG_LINE('peiceController.down() -- after erase()');
+
             if (this.available({x: this.topLeft.x, y: this.topLeft.y + 1})) {
                 this.topLeft.down();
                 this.bottomRight.down();
             } else {
-//                Debug.LOG_LINE('this.active = false');
+                this.active = false;
+            }
+
+            if (!this.available({x: this.topLeft.x, y: this.topLeft.y + 1})) {
                 this.active = false;
             }
 
             this.draw();
-
         };
 
         this.isOnBoard = function (r, c) {
@@ -476,7 +475,6 @@ var PieceController = function (piece, player) {
         };
 
         this.available = function (topLeft, bottomRight) {
-
             for (var x = 0; x < this.piece.cols; ++x) {
                 for (var y = 0; y < this.piece.rows; ++y) {
 
@@ -488,7 +486,6 @@ var PieceController = function (piece, player) {
 
 
                         if (!game.state.board.isCellFree(topLeft.y + y, topLeft.x + x)) {
-//                            Debug.LOG_LINE((topLeft.y + y) + ' ' + (topLeft.x + x));
                             return false;
                         }
                     }
@@ -499,6 +496,7 @@ var PieceController = function (piece, player) {
         };
 
         this.draw = function (color) {
+
             var c = color || this.piece.color;
             for (var i = 0; i < this.piece.rows; ++i) {
                 for (var j = 0; j < this.piece.cols; ++j) {
@@ -512,10 +510,8 @@ var PieceController = function (piece, player) {
         this.erase = function () {
             for (var x = 0; x < this.piece.cols; ++x) {
                 for (var y = 0; y < this.piece.rows; ++y) {
-//                    Debug.LOG_LINE('before erase cell');
                     if (this.piece.state[y][x] == 1) {
                         game.state.board.eraseCell(this.topLeft.y + y, this.topLeft.x + x);
-//                        Debug.LOG_LINE(y + ' ' + x);
                     }
                 }
             }
@@ -603,29 +599,21 @@ var Player = function (player) {
     this.player = player;
 
     this.piece = new PieceController(PieceGenerator.generateRandomPiece(), this.player);
-//    alert('ok');
 
     this.play = function () {
-//        Debug.LOG_LINE('pieceControls.play()');
-
         if (!this.piece.active) {
             this.piece = new PieceController(PieceGenerator.generateRandomPiece(), this.player);
             setTimeout(function () {
-//                Debug.LOG_LINE('setTimeout 1');
                 THIS.play();
             }, game.speed);
             return
         }
         ;
 
-
         this.piece.draw();
-//        Debug.LOG_LINE('Player.play() -- after draw');
         this.piece.down();
-//        Debug.LOG_LINE('Player.play() -- after down');
 
         setTimeout(function () {
-//            Debug.LOG_LINE('setTimeout 2');
             THIS.play();
         }, game.speed);
     }
@@ -649,10 +637,8 @@ var Player = function (player) {
     };
 
 };
-//alert(new T().toSource());
-//alert('before player 1');
+
 var Player1 = new Player('Player1');
-//alert('after player1');
 var Player2 = new Player('Player2');
 
 
