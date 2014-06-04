@@ -39,6 +39,19 @@ var colors = {
 
 /* Base class for the tetriminos */
 var Piece = function () {
+    this.toString = function () {
+        var result = '';
+
+        for (var i = 0; i < this.rows; ++i) {
+            for (var j = 0; j < this.cols; ++j) {
+                result += this.state[i][j] + ' ';
+            }
+            result += '<br />';
+        }
+
+        return result;
+    }
+    ;
     this.createArrayCopy = function (a) {
         var b = [];
         for (var i = 0; i < a.length; ++i) {
@@ -52,10 +65,10 @@ var Piece = function () {
     }
 
     this.rotateLeft = function () {
-        var newState = this.createMatrix(this.rows, this.cols);
+        var newState = this.createMatrix(this.cols, this.rows);
         for (var i = 0; i < this.rows; ++i) {
             for (var j = 0; j < this.cols; ++j) {
-                newState[this.rows - j - 1][i] = this.state[i][j];
+                newState[this.cols - j - 1][i] = this.state[i][j];
             }
         }
 
@@ -399,6 +412,7 @@ var game = {
 var PieceController = function (piece, player) {
         this.active = true;
         this.piece = piece;
+        this.rotation = true;
 
         if (player === 'Player1') {
             this.topLeft = new Point(0, 0);
@@ -438,6 +452,7 @@ var PieceController = function (piece, player) {
         };
 
         this.rotateRight = function () {
+            if (!this.rotation) return;
             if (!this.active) return;
 
             this.erase();
@@ -445,6 +460,7 @@ var PieceController = function (piece, player) {
 
             if (!this.available(this.topLeft)) {
 
+                Debug.LOG_LINE('rotateRight');
                 this.piece.rotateLeft();
             }
 
@@ -453,8 +469,11 @@ var PieceController = function (piece, player) {
 
         this.down = function () {
             if (!this.active) return;
-
+//            Debug.LOG_LINE('pieceController down');
+//            Debug.LOG_LINE(this.topLeft.y + ' ' + this.topLeft.x);
             this.erase();
+
+//            Debug.LOG_LINE(this.piece.toString());
 
             if (this.available({x: this.topLeft.x, y: this.topLeft.y + 1})) {
                 this.topLeft.down();
@@ -464,7 +483,7 @@ var PieceController = function (piece, player) {
             }
 
             if (!this.available({x: this.topLeft.x, y: this.topLeft.y + 1})) {
-                this.active = false;
+                this.rotation = false;
             }
 
             this.draw();
@@ -479,6 +498,7 @@ var PieceController = function (piece, player) {
                 for (var y = 0; y < this.piece.rows; ++y) {
 
                     if (this.piece.state[y][x] == 1) {
+//                        Debug.LOG_LINE(topLeft.y + y + ' ' + topLeft.x + x);
                         if (!this.isOnBoard(topLeft.y + y, topLeft.x + x)) {
                             Debug.LOG_LINE('not on board');
                             return false;
@@ -610,7 +630,7 @@ var Player = function (player) {
         }
         ;
 
-        this.piece.draw();
+//        this.piece.draw();
         this.piece.down();
 
         setTimeout(function () {
