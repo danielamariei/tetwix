@@ -270,7 +270,7 @@ var PieceGenerator = {
 };
 
 /* The Tetris game logic */
-//test
+//test 2
 
 var game = {
     cellSize: 15,
