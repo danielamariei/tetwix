@@ -372,11 +372,13 @@ var Player = function (player) {
     var THIS = this;
     this.player = player;
 
-    this.piece = new PieceController(PieceGenerator.generateRandomPiece(), this.player);
+    this.currentPiece = new PieceController(PieceGenerator.generateRandomPiece(), this.player);
+    this.nextPiece = new PieceController(PieceGenerator.generateRandomPiece(), this.player);
 
     this.play = function () {
-        if (!this.piece.active) {
-            this.piece = new PieceController(PieceGenerator.generateRandomPiece(), this.player);
+        if (!this.currentPiece.active) {
+            this.currentPiece = this.nextPiece;
+            this.nextPiece = new PieceController(PieceGenerator.generateRandomPiece(), this.player);
             setTimeout(function () {
                 THIS.play();
             }, game.speed);
@@ -385,29 +387,31 @@ var Player = function (player) {
         ;
 
 //        this.piece.draw();
-        this.piece.down();
+        this.currentPiece.down();
 
+        if (this.currentPiece.topLeft.y > 3) {
+            this.nextPiece.draw();
+        }
         setTimeout(function () {
             THIS.play();
         }, game.speed);
     }
 
     this.down = function () {
-        this.piece.down();
+        this.currentPiece.down();
 
     };
 
     this.right = function () {
-        this.piece.right();
+        this.currentPiece.right();
     };
 
     this.left = function () {
-        this.piece.left();
+        this.currentPiece.left();
     };
 
     this.rotateRight = function () {
-//        alert(1);
-        this.piece.rotateRight();
+        this.currentPiece.rotateRight();
     };
 
 };
@@ -416,6 +420,6 @@ var Player = function (player) {
 
 var Player1 = new Player('Player1');
 var Player2 = new Player('Player2');
-alert(1);
+
 
 game.controls.startNewGame();
