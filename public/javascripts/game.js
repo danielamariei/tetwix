@@ -333,9 +333,9 @@ var PieceController = function (piece, player) {
                 return;
             }
 
-            if (!this.available({x: this.topLeft.x, y: this.topLeft.y + 1})) {
-                this.rotation = false;
-            }
+//            if (!this.available({x: this.topLeft.x, y: this.topLeft.y + 1})) {
+//                this.rotation = false;
+//            }
 
             this.draw(CellStates.active);
         };
@@ -418,24 +418,6 @@ var PieceController = function (piece, player) {
     ;
 
 
-var Point = function (x, y) {
-    this.x = x;
-    this.y = y;
-
-    this.left = function () {
-        this.x--;
-    };
-
-    this.right = function () {
-        this.x++;
-    };
-
-    this.down = function () {
-        this.y++;
-    };
-};
-
-
 var Keyboard = {
     Player1: {
         up: 87,
@@ -484,53 +466,6 @@ document.onkeydown = function (e) {
 };
 
 
-var Player = function (player) {
-    var THIS = this;
-    this.player = player;
-
-    this.currentPiece = new PieceController(PieceGenerator.generateRandomPiece(), this.player);
-    this.nextPiece = new PieceController(PieceGenerator.generateRandomPiece(), this.player);
-
-    this.play = function () {
-        if (!this.currentPiece.active) {
-            this.currentPiece = this.nextPiece;
-            this.nextPiece = new PieceController(PieceGenerator.generateRandomPiece(), this.player);
-            setTimeout(function () {
-                THIS.play();
-            }, game.speed);
-            return
-        }
-        ;
-
-//        this.piece.draw();
-        this.currentPiece.down();
-
-        if (this.currentPiece.topLeft.y > 3) {
-            this.nextPiece.draw();
-        }
-        setTimeout(function () {
-            THIS.play();
-        }, game.speed);
-    }
-
-    this.down = function () {
-        this.currentPiece.down();
-
-    };
-
-    this.right = function () {
-        this.currentPiece.right();
-    };
-
-    this.left = function () {
-        this.currentPiece.left();
-    };
-
-    this.rotateRight = function () {
-        this.currentPiece.rotateRight();
-    };
-
-};
 
 
 var Player1 = new Player('Player1');
