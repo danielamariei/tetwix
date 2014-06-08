@@ -4,6 +4,7 @@
 var colors = {
     cyan: '#00FFFF',
     blue: '#0000FF',
+    black: '#000000',
     orange: '#FFA500',
     yellow: '#FFFF00',
     lime: '#00FF00',
@@ -81,6 +82,24 @@ var Piece = function () {
         this.cols = aux;
     }
 };
+
+
+/* The B(omb) tetrimino */
+var B = function () {
+    this.type = 'B';
+    this.color = colors.black;
+    this.rows = 3;
+    this.cols = 3;
+    this.state =
+        [
+            [0, 0, 0],
+            [0, 1, 0],
+            [0, 0, 0]
+        ];
+};
+
+/* Inherit from the base Piece */
+B.prototype = new Piece();
 
 
 /* The I tetrimino */
@@ -204,8 +223,11 @@ Z.prototype = new Piece();
 
 /* Offers functionality for generating random pieces */
 var PieceGenerator = {
-    length: 7,
+    length: 8,
     pieces: [
+        function () {
+            return new B();
+        },
         function () {
             return new I();
         },

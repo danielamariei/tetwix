@@ -64,6 +64,10 @@ var PieceController = function (piece, player) {
     };
 
     this.down = function () {
+        if (game.state.board.isGameOver()) {
+            game.controls.end();
+        }
+
         if (!this.active) return;
 
         this.erase();
@@ -78,11 +82,25 @@ var PieceController = function (piece, player) {
         } else {
             this.active = false;
             this.draw(CellStates.dead);
+            this.detonateIfPieceIsBomb();
             game.state.board.verifyRowsThatNeedToBeCleared();
             return;
         }
 
         this.draw(CellStates.active);
+    };
+
+    this.detonateIfPieceIsBomb = function() {
+        if (this.piece.hasOwnProperty('type')) {
+            if (this.piece.type === 'B') {
+                this.detonate();
+            }
+        }
+    };
+
+    this.detonate = function() {
+        Debug.LOG_LINE('detonate');
+        game.state.board.clearArea(this.topLeft, {x: this.topLeft.x + this.piece.cols, y: this.topLeft.y + this.piece.rows});
     };
 
     this.isOnBoard = function (r, c) {

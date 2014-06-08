@@ -40,8 +40,8 @@ var game = {
             resume: function () {
             },
 
-            end: function() {
-
+            end: function () {
+                Debug.LOG_LINE('Game over');
             }
         },
 
@@ -79,6 +79,22 @@ var game = {
                             game.state.board.state[i][game.cols - j - 1].drawOutline("#FFFFFF");
                         }
                     }
+                },
+
+                isOnBoard: function (r, c) {
+                    return (r >= 0 && r < game.rows) && (c >= 0 && c < game.cols);
+                },
+
+
+                isGameOver: function () {
+                    var r = 4;
+                    for (var c = 0; c < game.cols; ++c) {
+                        if (this.isCellDead(r, c)) {
+                            return true;
+                        }
+                    }
+
+                    return false;
                 },
 
                 verifyRowsThatNeedToBeCleared: function () {
@@ -169,6 +185,18 @@ var game = {
                         }
                     }
 
+                },
+
+                clearArea: function (topLeft, bottomRight) {
+                    Debug.LOG_LINE('clearArea');
+                    for (var r = topLeft.y; r <= bottomRight.y; ++r) {
+                        for (var c = topLeft.x; c <= bottomRight.x; ++c) {
+//                            Debug.LOG_LINE(r + ' ' + c);
+                            if (this.isOnBoard(r, c)) {
+                                this.eraseCell(r, c);
+                            }
+                        }
+                    }
                 },
 
                 eraseCell: function (r, c) {
