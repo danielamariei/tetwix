@@ -32,209 +32,227 @@ var CellStates = {
 /* The Tetris game logic */
 
 var game = {
-    cellSize: 15,
-    rows: 20,
-    cols: 10,
-    speed: 1000,
-    canvas: null,
-    ctx: null,
+        cellSize: 15,
+        rows: 20,
+        cols: 10,
+        speed: 1000,
+        canvas: null,
+        ctx: null,
 
-    controls: {
-        startNewGame: function () {
-            Debug.LOG_LINE("startNewGame");
-            game.state.board.init();
-            Debug.LOG_LINE("after init");
-            game.helpers.attachListeners();
-            Debug.LOG_LINE("after attaching listeners");
+        controls: {
+            startNewGame: function () {
+                Debug.LOG_LINE("startNewGame");
+                game.state.board.init();
+                Debug.LOG_LINE("after init");
+                game.helpers.attachListeners();
+                Debug.LOG_LINE("after attaching listeners");
 
-            Player1.play();
-            Player2.play();
-        },
-
-        pause: function () {
-        },
-
-        resume: function () {
-        }
-    },
-
-
-    state: {
-        isGameOver: false,
-
-        board: {
-            state: null,
-
-            init: function (numberOfPlayers) {
-                game.canvas = document.getElementById("gameboard");
-
-                game.ctx = game.canvas.getContext("2d");
-
-                game.width = game.cols * game.cellSize;
-                game.height = game.rows * game.cellSize;
-                game.canvas.width = game.width;
-                game.canvas.height = game.height;
-
-                var ctx = game.ctx;
-
-                game.state.board.state = [];
-                for (var i = 0; i < game.rows; ++i) {
-                    game.state.board.state[i] = [];
-                    for (var j = 0; j < game.cols; ++j) {
-                        game.state.board.state[i][j] = game.state.board.createCell(j * game.cellSize, i * game.cellSize);
-                        game.state.board.state[i][j].drawOutline("#888888");
-                    }
-                }
-
-                for (var i = 0; i < 4; ++i) {
-                    for (var j = 0; j < 4; ++j) {
-                        game.state.board.state[i][j].drawOutline("#FFFFFF");
-                        game.state.board.state[i][game.cols - j - 1].drawOutline("#FFFFFF");
-                    }
-                }
+                Player1.play();
+                Player2.play();
             },
 
-            verifyRowsThatNeedToBeCleared: function () {
-                Debug.LOG_LINE('verifyRowsThatNeedToBeCleared');
-                for (var r = game.rows - 1; r > 3; --r) {
-                    while (this.isRowDead(r)) {
-                        this.clearRow(r);
-                        this.moveDownRowsAbove(r);
-                    }
-                }
+            pause: function () {
             },
 
-            moveDownRowsAbove: function (r) {
-                Debug.LOG_LINE('moveDownRowsAbove');
-                for (var i = r - 1; i > 3; --i) {
-                    this.moveDownRow(i);
-                }
-            },
-
-            moveDownRow: function (r) {
-//                Debug.LOG_LINE('moveDownRow')
-                for (var c = 0; c < game.cols; ++c) {
-                    this.moveDownCell(r, c);
-                }
-            },
-
-            moveDownCell: function (r, c) {
-//                Debug.LOG_LINE('moveDownCell')
-                var state = game.state.board.state[r][c].state;
-
-                if (state === CellStates.dead) {
-//                    Debug.LOG_LINE(state);
-                    this.eraseCell(r, c);
-                    this.drawCell(r + 1, c, CellStates.dead);
-                }
-            },
-
-            isRowDead: function (r) {
-                for (var c = 0; c < game.cols; ++c) {
-                    if (!this.isCellDead(r, c)) {
-                        return false;
-                    }
-                }
-
-                return true;
-            },
-
-            clearRow: function (r) {
-                Debug.LOG_LINE('Clearing row');
-                for (var c = 0; c < game.cols; ++c) {
-                    game.state.board.eraseCell(r, c);
-                }
-            },
-
-            isCellFree: function (r, c) {
-                return game.state.board.state[r][c].state === CellStates.free;
-            },
-
-            isCellDead: function (r, c) {
-//                Debug.LOG_LINE('isCellDead' + r + ' ' + c);
-                return game.state.board.state[r][c].state === CellStates.dead;
-            },
-
-            isCellActive: function (r, c) {
-                return game.state.board.state[r][c].state === CellStates.active;
-            },
-
-            isCellFreeOrActive: function (r, c) {
-                return this.isCellFree(r, c) || this.isCellActive(r, c);
-            },
-
-
-            erase: function () {
-                for (var i = 0; i < game.rows; ++i) {
-                    for (var j = 0; j < game.cols; ++j) {
-                        eraseCell(i, j);
-                    }
-                }
-
-            },
-
-            eraseCell: function (r, c) {
-                game.state.board.state[r][c].erase();
-            },
-            drawCell: function (r, c, state) {
-                game.state.board.state[r][c].draw(null, state);
-            },
-
-            createCell: function (x, y) {
-                var cell = {
-                    state: CellStates.free,
-
-                    drawOutline: function (color) {
-                        game.ctx.strokeStyle = color;
-                        game.ctx.strokeRect(x, y, game.cellSize, game.cellSize);
-                    },
-
-                    draw: function (color, state) {
-                        var cellState = state || CellStates.active;
-                        game.ctx.fillStyle = color;
-                        game.ctx.fillRect(x + 1, y + 1, game.cellSize - 2, game.cellSize - 2);
-                        cell.state = cellState;
-                    },
-
-                    erase: function () {
-                        game.ctx.clearRect(x + 1, y + 1, game.cellSize - 2, game.cellSize - 2);
-                        cell.state = CellStates.free;
-                    },
-
-                    toggle: function () {
-                        if (cell.state === CellStates.free) {
-                            cell.draw('rgb(200,0,0)');
-                        } else {
-                            cell.erase();
-                        }
-
-                    }
-                };
-
-                return cell;
+            resume: function () {
             }
-        }
-    },
-    helpers: {
-        attachListeners: function () {
-            game.helpers.attachClickListener();
         },
 
-        attachClickListener: function () {
-            game.canvas.addEventListener("mousedown", game.cellListener, false);
+
+        state: {
+            isGameOver: false,
+
+            board: {
+                state: null,
+
+                init: function (numberOfPlayers) {
+                    game.canvas = document.getElementById("gameboard");
+
+                    game.ctx = game.canvas.getContext("2d");
+
+                    game.width = game.cols * game.cellSize;
+                    game.height = game.rows * game.cellSize;
+                    game.canvas.width = game.width;
+                    game.canvas.height = game.height;
+
+                    var ctx = game.ctx;
+
+                    game.state.board.state = [];
+                    for (var i = 0; i < game.rows; ++i) {
+                        game.state.board.state[i] = [];
+                        for (var j = 0; j < game.cols; ++j) {
+                            game.state.board.state[i][j] = game.state.board.createCell(j * game.cellSize, i * game.cellSize);
+                            game.state.board.state[i][j].drawOutline("#888888");
+                        }
+                    }
+
+                    for (var i = 0; i < 4; ++i) {
+                        for (var j = 0; j < 4; ++j) {
+                            game.state.board.state[i][j].drawOutline("#FFFFFF");
+                            game.state.board.state[i][game.cols - j - 1].drawOutline("#FFFFFF");
+                        }
+                    }
+                },
+
+                verifyRowsThatNeedToBeCleared: function () {
+//                Debug.LOG_LINE('verifyRowsThatNeedToBeCleared');
+                    for (var r = game.rows - 1; r > 3; --r) {
+                        while (this.isRowDead(r)) {
+                            this.clearRow(r);
+                            this.moveDownRowsAbove(r);
+                        }
+                    }
+                },
+
+                moveDownRowsAbove: function (r) {
+//                Debug.LOG_LINE('moveDownRowsAbove');
+                    for (var i = r - 1; i > 3; --i) {
+                        this.moveDownRow(i);
+                    }
+                },
+
+                moveDownRow: function (r) {
+//                Debug.LOG_LINE('moveDownRow')
+                    for (var c = 0; c < game.cols; ++c) {
+                        this.moveDownCell(r, c);
+                    }
+                },
+
+                moveDownCell: function (r, c) {
+                    if (r < game.rows - 1) {
+                        if (this.isCellFree(r + 1, c)) {
+
+            //                Debug.LOG_LINE('moveDownCell')
+                            var state = game.state.board.state[r][c].state;
+                            var color = game.state.board.state[r][c].fillColor;
+
+                            if (state === CellStates.dead) {
+            //                    Debug.LOG_LINE(state);
+
+                                this.eraseCell(r, c);
+                                this.drawCell(r + 1, c, color, CellStates.dead);
+                            }
+
+//                            this.moveDownCell(r + 1, c);
+                        }
+                    } else {
+                        this.verifyRowsThatNeedToBeCleared();
+                    }
+                },
+
+                isRowDead: function (r) {
+                    for (var c = 0; c < game.cols; ++c) {
+                        if (!this.isCellDead(r, c)) {
+                            return false;
+                        }
+                    }
+
+                    return true;
+                },
+
+                clearRow: function (r) {
+                    Debug.LOG_LINE('Clearing row');
+                    for (var c = 0; c < game.cols; ++c) {
+                        game.state.board.eraseCell(r, c);
+                    }
+                },
+
+                isCellFree: function (r, c) {
+                    return game.state.board.state[r][c].state === CellStates.free;
+                },
+
+                isCellDead: function (r, c) {
+//                Debug.LOG_LINE('isCellDead' + r + ' ' + c);
+                    return game.state.board.state[r][c].state === CellStates.dead;
+                },
+
+                isCellActive: function (r, c) {
+                    return game.state.board.state[r][c].state === CellStates.active;
+                },
+
+                isCellFreeOrActive: function (r, c) {
+                    return this.isCellFree(r, c) || this.isCellActive(r, c);
+                },
+
+
+                erase: function () {
+                    for (var i = 0; i < game.rows; ++i) {
+                        for (var j = 0; j < game.cols; ++j) {
+                            eraseCell(i, j);
+                        }
+                    }
+
+                },
+
+                eraseCell: function (r, c) {
+                    game.state.board.state[r][c].erase();
+                },
+                drawCell: function (r, c, color, state) {
+                    game.state.board.state[r][c].draw(color, state);
+                },
+
+                createCell: function (x, y) {
+                    var cell = {
+                        state: CellStates.free,
+                        fillColor: null,
+                        strokeColor: null,
+
+                        drawOutline: function (color) {
+                            this.strokeColor = color;
+                            game.ctx.strokeStyle = color;
+                            game.ctx.strokeRect(x, y, game.cellSize, game.cellSize);
+                        },
+
+                        draw: function (color, state) {
+                            var cellState = state || CellStates.active;
+                            if (color) {
+                                this.fillColor = color;
+                            }
+                            game.ctx.fillStyle = this.fillColor;
+                            game.ctx.fillRect(x + 1, y + 1, game.cellSize - 2, game.cellSize - 2);
+                            cell.state = cellState;
+                        },
+
+                        erase: function () {
+                            game.ctx.clearRect(x + 1, y + 1, game.cellSize - 2, game.cellSize - 2);
+                            cell.state = CellStates.free;
+                        },
+
+                        toggle: function () {
+                            if (cell.state === CellStates.free) {
+                                cell.draw('rgb(200,0,0)');
+                            } else {
+                                cell.erase();
+                            }
+
+                        }
+                    };
+
+                    return cell;
+                }
+            }
+        },
+        helpers: {
+            attachListeners: function () {
+                game.helpers.attachClickListener();
+            },
+
+            attachClickListener: function () {
+                game.canvas.addEventListener("mousedown", game.cellListener, false);
+            }
+        },
+
+        cellListener: function (event) {
+            var x = event.pageX - game.canvas.offsetLeft;
+            var y = event.pageY - game.canvas.offsetTop;
+
+            var j = Math.floor(x / game.cellSize);
+            var i = Math.floor(y / game.cellSize);
+            game.state.board.state[i][j].toggle();
+
         }
-    },
-
-    cellListener: function (event) {
-        var x = event.pageX - game.canvas.offsetLeft;
-        var y = event.pageY - game.canvas.offsetTop;
-
-        var j = Math.floor(x / game.cellSize);
-        var i = Math.floor(y / game.cellSize);
-        game.state.board.state[i][j].toggle();
-
     }
-};
+    ;
 
 
 var PieceController = function (piece, player) {
