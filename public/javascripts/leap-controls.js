@@ -8,15 +8,8 @@
 
 var controller = new Leap.Controller({enableGestures: true});
 
-
 var startId = null;
 var endId = null;
-
-var Game = document.getElementById('debugging');
-
-function printToGameboard(text) {
-    Game.innerHTML += text + "<br />";
-}
 
 controller.on('frame', function (frame) {
     // Are there any gestures in this frame?
@@ -61,8 +54,10 @@ controller.on('frame', function (frame) {
 
 // init
 controller.on('ready', function () {
-    printToGameboard('ready');
+    Debug.LOG_LINE('ready');
 });
+
 controller.connect();
-printToGameboard("Waiting for device to connect.")
+
+Debug.LOG_LINE("Waiting for device to connect.")
 

@@ -5,9 +5,11 @@
  * Time: 2:41 PM
  * To change this template use File | Settings | File Templates.
  */
+
+/* Controls a piece on the game board */
 var PieceController = function (piece, player) {
-    this.active = true;
     this.piece = piece;
+    this.active = true;
     this.rotation = true;
 
     if (player === 'Player1') {
@@ -44,7 +46,6 @@ var PieceController = function (piece, player) {
         }
 
         this.draw();
-
     };
 
     this.rotateRight = function () {
@@ -55,18 +56,17 @@ var PieceController = function (piece, player) {
         this.piece.rotateRight();
 
         if (!this.available(this.topLeft)) {
-
             Debug.LOG_LINE('rotateRight');
             this.piece.rotateLeft();
         }
 
         this.draw();
-    }
+    };
 
     this.down = function () {
         if (!this.active) return;
-        this.erase();
 
+        this.erase();
 
         if (this.available({x: this.topLeft.x, y: this.topLeft.y + 1})) {
             this.topLeft.down();
@@ -76,16 +76,11 @@ var PieceController = function (piece, player) {
             this.draw(CellStates.active);
             return;
         } else {
-//                Debug.LOG_LINE('inactive');
             this.active = false;
             this.draw(CellStates.dead);
             game.state.board.verifyRowsThatNeedToBeCleared();
             return;
         }
-
-//            if (!this.available({x: this.topLeft.x, y: this.topLeft.y + 1})) {
-//                this.rotation = false;
-//            }
 
         this.draw(CellStates.active);
     };
@@ -104,7 +99,6 @@ var PieceController = function (piece, player) {
                         return false;
                     }
 
-
                     if (!game.state.board.isCellFree(topLeft.y + y, topLeft.x + x)) {
                         return false;
                     }
@@ -118,13 +112,11 @@ var PieceController = function (piece, player) {
     this.obstructed = function (topLeft, bottomRight) {
         for (var x = 0; x < this.piece.cols; ++x) {
             for (var y = 0; y < this.piece.rows; ++y) {
-
                 if (this.piece.state[y][x] == 1) {
                     if (!this.isOnBoard(topLeft.y + y, topLeft.x + x)) {
 //                            Debug.LOG_LINE('not on board');
                         return false;
                     }
-
 
                     if (!game.state.board.isCellFreeOrActive(topLeft.y + y, topLeft.x + x)) {
                         return false;
@@ -155,7 +147,6 @@ var PieceController = function (piece, player) {
             }
         }
     };
-
 
     this.invalidateMove = function () {
         piece.draw('#c82124');

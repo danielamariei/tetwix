@@ -38,6 +38,10 @@ var game = {
             },
 
             resume: function () {
+            },
+
+            end: function() {
+
             }
         },
 
@@ -105,12 +109,12 @@ var game = {
                     if (r < game.rows - 1) {
                         if (this.isCellFree(r + 1, c)) {
 
-            //                Debug.LOG_LINE('moveDownCell')
+                            //                Debug.LOG_LINE('moveDownCell')
                             var state = game.state.board.state[r][c].state;
                             var color = game.state.board.state[r][c].fillColor;
 
                             if (state === CellStates.dead) {
-            //                    Debug.LOG_LINE(state);
+                                //                    Debug.LOG_LINE(state);
 
                                 this.eraseCell(r, c);
                                 this.drawCell(r + 1, c, color, CellStates.dead);
@@ -236,56 +240,6 @@ var game = {
         }
     }
     ;
-
-
-var Keyboard = {
-    Player1: {
-        up: 87,
-        right: 68,
-        down: 83,
-        left: 65
-    },
-
-    Player2: {
-        up: 38,
-        right: 39,
-        down: 40,
-        left: 37
-    }
-};
-
-document.onkeydown = function (e) {
-    var dir = e.keyCode;
-
-    switch (dir) {
-        case Keyboard.Player1.right:
-            Player1.right();
-            break;
-        case Keyboard.Player1.left:
-            Player1.left();
-            break;
-        case Keyboard.Player1.down:
-            Player1.down();
-            break;
-        case Keyboard.Player1.up:
-            Player1.rotateRight();
-            break;
-        case Keyboard.Player2.right:
-            Player2.right();
-            break;
-        case Keyboard.Player2.up:
-            Player2.rotateRight();
-            break;
-        case Keyboard.Player2.left:
-            Player2.left();
-            break;
-        case Keyboard.Player2.down:
-            Player2.down();
-            break;
-    }
-};
-
-
 
 
 var Player1 = new Player('Player1');

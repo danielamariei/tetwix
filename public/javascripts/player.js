@@ -5,38 +5,47 @@
  * Time: 2:00 PM
  * To change this template use File | Settings | File Templates.
  */
+
+/* A player of the game */
 var Player = function (player) {
+    var generateRandomPieceWithController = function () {
+        return new PieceController(PieceGenerator.generateRandomPiece(), THIS.player);
+    };
+
+    // a pointer to the current object
     var THIS = this;
+
+    // Player 1 or player 2
     this.player = player;
 
-    this.currentPiece = new PieceController(PieceGenerator.generateRandomPiece(), this.player);
-    this.nextPiece = new PieceController(PieceGenerator.generateRandomPiece(), this.player);
+    this.currentPiece = generateRandomPieceWithController();
+    this.nextPiece = generateRandomPieceWithController();
 
     this.play = function () {
         if (!this.currentPiece.active) {
             this.currentPiece = this.nextPiece;
-            this.nextPiece = new PieceController(PieceGenerator.generateRandomPiece(), this.player);
+            this.nextPiece = generateRandomPieceWithController();
+
             setTimeout(function () {
                 THIS.play();
             }, game.speed);
-            return
-        }
-        ;
 
-//        this.piece.draw();
+            return;
+        }
+
         this.currentPiece.down();
 
         if (this.currentPiece.topLeft.y > 3) {
             this.nextPiece.draw();
         }
+
         setTimeout(function () {
             THIS.play();
         }, game.speed);
-    }
+    };
 
     this.down = function () {
         this.currentPiece.down();
-
     };
 
     this.right = function () {
@@ -50,5 +59,4 @@ var Player = function (player) {
     this.rotateRight = function () {
         this.currentPiece.rotateRight();
     };
-
 };

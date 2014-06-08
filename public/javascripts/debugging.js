@@ -5,6 +5,8 @@
  * Time: 2:39 PM
  * To change this template use File | Settings | File Templates.
  */
+
+
 /* Class that helps debugging */
 var Debugging = function () {
     this.output = document.getElementById('debugging');
@@ -16,6 +18,5 @@ var Debugging = function () {
         this.LOG(text + "<br />");
     };
 };
-
 
 var Debug = new Debugging();
