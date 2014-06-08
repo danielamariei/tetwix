@@ -23,12 +23,18 @@ var Debugging = function () {
 var Debug = new Debugging();
 
 
+var CellStates = {
+    free: 1,
+    active: 2,
+    dead: 3
+};
+
 /* The Tetris game logic */
 
 var game = {
     cellSize: 15,
     rows: 20,
-    cols: 40,
+    cols: 10,
     speed: 1000,
     canvas: null,
     ctx: null,
@@ -88,9 +94,75 @@ var game = {
                 }
             },
 
-            isCellFree: function (r, c) {
-                return game.state.board.state[r][c].isFree;
+            verifyRowsThatNeedToBeCleared: function () {
+                Debug.LOG_LINE('verifyRowsThatNeedToBeCleared');
+                for (var r = game.rows - 1; r > 3; --r) {
+                    while (this.isRowDead(r)) {
+                        this.clearRow(r);
+                        this.moveDownRowsAbove(r);
+                    }
+                }
             },
+
+            moveDownRowsAbove: function (r) {
+                Debug.LOG_LINE('moveDownRowsAbove');
+                for (var i = r - 1; i > 3; --i) {
+                    this.moveDownRow(i);
+                }
+            },
+
+            moveDownRow: function (r) {
+//                Debug.LOG_LINE('moveDownRow')
+                for (var c = 0; c < game.cols; ++c) {
+                    this.moveDownCell(r, c);
+                }
+            },
+
+            moveDownCell: function (r, c) {
+//                Debug.LOG_LINE('moveDownCell')
+                var state = game.state.board.state[r][c].state;
+
+                if (state === CellStates.dead) {
+//                    Debug.LOG_LINE(state);
+                    this.eraseCell(r, c);
+                    this.drawCell(r + 1, c, CellStates.dead);
+                }
+            },
+
+            isRowDead: function (r) {
+                for (var c = 0; c < game.cols; ++c) {
+                    if (!this.isCellDead(r, c)) {
+                        return false;
+                    }
+                }
+
+                return true;
+            },
+
+            clearRow: function (r) {
+                Debug.LOG_LINE('Clearing row');
+                for (var c = 0; c < game.cols; ++c) {
+                    game.state.board.eraseCell(r, c);
+                }
+            },
+
+            isCellFree: function (r, c) {
+                return game.state.board.state[r][c].state === CellStates.free;
+            },
+
+            isCellDead: function (r, c) {
+//                Debug.LOG_LINE('isCellDead' + r + ' ' + c);
+                return game.state.board.state[r][c].state === CellStates.dead;
+            },
+
+            isCellActive: function (r, c) {
+                return game.state.board.state[r][c].state === CellStates.active;
+            },
+
+            isCellFreeOrActive: function (r, c) {
+                return this.isCellFree(r, c) || this.isCellActive(r, c);
+            },
+
 
             erase: function () {
                 for (var i = 0; i < game.rows; ++i) {
@@ -104,30 +176,33 @@ var game = {
             eraseCell: function (r, c) {
                 game.state.board.state[r][c].erase();
             },
+            drawCell: function (r, c, state) {
+                game.state.board.state[r][c].draw(null, state);
+            },
 
             createCell: function (x, y) {
                 var cell = {
-                    isFree: true,
-                    dead: false,
+                    state: CellStates.free,
 
                     drawOutline: function (color) {
                         game.ctx.strokeStyle = color;
                         game.ctx.strokeRect(x, y, game.cellSize, game.cellSize);
                     },
 
-                    draw: function (color) {
+                    draw: function (color, state) {
+                        var cellState = state || CellStates.active;
                         game.ctx.fillStyle = color;
                         game.ctx.fillRect(x + 1, y + 1, game.cellSize - 2, game.cellSize - 2);
-                        cell.isFree = false;
+                        cell.state = cellState;
                     },
 
                     erase: function () {
                         game.ctx.clearRect(x + 1, y + 1, game.cellSize - 2, game.cellSize - 2);
-                        cell.isFree = true;
+                        cell.state = CellStates.free;
                     },
 
                     toggle: function () {
-                        if (cell.isFree) {
+                        if (cell.state === CellStates.free) {
                             cell.draw('rgb(200,0,0)');
                         } else {
                             cell.erase();
@@ -222,24 +297,29 @@ var PieceController = function (piece, player) {
 
         this.down = function () {
             if (!this.active) return;
-//            Debug.LOG_LINE('pieceController down');
-//            Debug.LOG_LINE(this.topLeft.y + ' ' + this.topLeft.x);
             this.erase();
 
-//            Debug.LOG_LINE(this.piece.toString());
 
             if (this.available({x: this.topLeft.x, y: this.topLeft.y + 1})) {
                 this.topLeft.down();
                 this.bottomRight.down();
+            } else if (this.obstructed({x: this.topLeft.x, y: this.topLeft.y + 1})) {
+                Debug.LOG_LINE('obstructed');
+                this.draw(CellStates.active);
+                return;
             } else {
+//                Debug.LOG_LINE('inactive');
                 this.active = false;
+                this.draw(CellStates.dead);
+                game.state.board.verifyRowsThatNeedToBeCleared();
+                return;
             }
 
             if (!this.available({x: this.topLeft.x, y: this.topLeft.y + 1})) {
                 this.rotation = false;
             }
 
-            this.draw();
+            this.draw(CellStates.active);
         };
 
         this.isOnBoard = function (r, c) {
@@ -251,9 +331,8 @@ var PieceController = function (piece, player) {
                 for (var y = 0; y < this.piece.rows; ++y) {
 
                     if (this.piece.state[y][x] == 1) {
-//                        Debug.LOG_LINE(topLeft.y + y + ' ' + topLeft.x + x);
                         if (!this.isOnBoard(topLeft.y + y, topLeft.x + x)) {
-                            Debug.LOG_LINE('not on board');
+//                            Debug.LOG_LINE('not on board');
                             return false;
                         }
 
@@ -268,13 +347,32 @@ var PieceController = function (piece, player) {
             return true;
         };
 
-        this.draw = function (color) {
+        this.obstructed = function (topLeft, bottomRight) {
+            for (var x = 0; x < this.piece.cols; ++x) {
+                for (var y = 0; y < this.piece.rows; ++y) {
 
-            var c = color || this.piece.color;
+                    if (this.piece.state[y][x] == 1) {
+                        if (!this.isOnBoard(topLeft.y + y, topLeft.x + x)) {
+//                            Debug.LOG_LINE('not on board');
+                            return false;
+                        }
+
+
+                        if (!game.state.board.isCellFreeOrActive(topLeft.y + y, topLeft.x + x)) {
+                            return false;
+                        }
+                    }
+                }
+            }
+
+            return true;
+        };
+
+        this.draw = function (state) {
             for (var i = 0; i < this.piece.rows; ++i) {
                 for (var j = 0; j < this.piece.cols; ++j) {
                     if (this.piece.state[i][j] == 1) {
-                        game.state.board.state[this.topLeft.y + i][this.topLeft.x + j].draw(c);
+                        game.state.board.state[this.topLeft.y + i][this.topLeft.x + j].draw(this.piece.color, state);
                     }
                 }
             }
@@ -415,7 +513,6 @@ var Player = function (player) {
     };
 
 };
-
 
 
 var Player1 = new Player('Player1');
