@@ -10,6 +10,7 @@
 /* Class that helps debugging */
 var Debugging = function () {
     this.output = document.getElementById('debugging');
+
     this.LOG = function (text) {
         this.output.innerHTML += text;
     };
