@@ -64,8 +64,8 @@ var PieceController = function (piece, player) {
     };
 
     this.down = function () {
-        if (game.state.board.isGameOver()) {
-            game.controls.end();
+        if (game.state.isGameOver) {
+            return;
         }
 
         if (!this.active) return;
@@ -84,6 +84,7 @@ var PieceController = function (piece, player) {
             this.draw(CellStates.dead);
             this.detonateIfPieceIsBomb();
             game.state.board.verifyRowsThatNeedToBeCleared();
+            game.state.board.verifyIfGameIsOver();
             return;
         }
 

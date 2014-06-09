@@ -22,6 +22,13 @@ var Player = function (player) {
     this.nextPiece = generateRandomPieceWithController();
 
     this.play = function () {
+        if (game.state.isGameOver) {
+            Debug.LOG_LINE('before end()');
+            game.controls.end();
+            Debug.LOG_LINE('after end()');
+            return;
+        }
+
         if (!this.currentPiece.active) {
             this.currentPiece = this.nextPiece;
             this.nextPiece = generateRandomPieceWithController();
@@ -49,10 +56,12 @@ var Player = function (player) {
     };
 
     this.right = function () {
+        if (game.state.isGameOver) return;
         this.currentPiece.right();
     };
 
     this.left = function () {
+        if (game.state.isGameOver) return;
         this.currentPiece.left();
     };
 

@@ -42,6 +42,8 @@ var game = {
 
             end: function () {
                 Debug.LOG_LINE('Game over');
+                game.ctx.fillStyle = 'rgba(100, 100, 100, 0.3)';
+                game.ctx.fillRect(0, 0, game.width, game.height);
             }
         },
 
@@ -86,15 +88,13 @@ var game = {
                 },
 
 
-                isGameOver: function () {
+                verifyIfGameIsOver: function () {
                     var r = 4;
                     for (var c = 0; c < game.cols; ++c) {
                         if (this.isCellDead(r, c)) {
-                            return true;
+                            game.state.isGameOver = true;
                         }
                     }
-
-                    return false;
                 },
 
                 verifyRowsThatNeedToBeCleared: function () {
