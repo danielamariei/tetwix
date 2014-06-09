@@ -90,7 +90,7 @@ var PieceController = function (piece, player) {
         this.draw(CellStates.active);
     };
 
-    this.detonateIfPieceIsBomb = function() {
+    this.detonateIfPieceIsBomb = function () {
         if (this.piece.hasOwnProperty('type')) {
             if (this.piece.type === 'B') {
                 this.detonate();
@@ -98,9 +98,9 @@ var PieceController = function (piece, player) {
         }
     };
 
-    this.detonate = function() {
+    this.detonate = function () {
         Debug.LOG_LINE('detonate');
-        game.state.board.clearArea(this.topLeft, {x: this.topLeft.x + this.piece.cols, y: this.topLeft.y + this.piece.rows});
+        game.state.board.clearArea(this.topLeft, {x: this.topLeft.x + this.piece.cols - 1, y: this.topLeft.y + this.piece.rows - 1});
     };
 
     this.isOnBoard = function (r, c) {
