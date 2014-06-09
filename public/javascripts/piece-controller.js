@@ -100,7 +100,7 @@ var PieceController = function (piece, player) {
     };
 
     this.detonate = function () {
-        Debug.LOG_LINE('detonate');
+//        Debug.LOG_LINE('detonate');
         game.state.board.clearArea(this.topLeft, {x: this.topLeft.x + this.piece.cols - 1, y: this.topLeft.y + this.piece.rows - 1});
     };
 

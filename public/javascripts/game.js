@@ -19,6 +19,8 @@ var game = {
         rows: 20,
         cols: 10,
         speed: 1000,
+        score: 0,
+        scorePerLine: 100,
         canvas: null,
         ctx: null,
 
@@ -44,7 +46,7 @@ var game = {
             },
 
             resume: function () {
-                Debug.LOG_LINE('resume');
+//                Debug.LOG_LINE('resume');
                 Player1.resume();
                 Player2.resume();
 //                game.ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
@@ -53,7 +55,7 @@ var game = {
             },
 
             end: function () {
-                Debug.LOG_LINE('Game over');
+//                Debug.LOG_LINE('Game over');
                 game.ctx.fillStyle = 'rgba(100, 100, 100, 0.3)';
                 game.ctx.fillRect(0, 0, game.width, game.height);
 
@@ -116,11 +118,18 @@ var game = {
                 verifyRowsThatNeedToBeCleared: function () {
 //                Debug.LOG_LINE('verifyRowsThatNeedToBeCleared');
                     for (var r = game.rows - 1; r > 3; --r) {
+                        var clearedRows = 0;
                         while (this.isRowDead(r)) {
                             this.clearRow(r);
                             this.moveDownRowsAbove(r);
+
+                            ++clearedRows;
                         }
+
+                        game.score += (clearedRows * clearedRows * game.scorePerLine);
+//                        Debug.LOG_LINE(game.score);
                     }
+                    document.getElementById("score").innerHTML = game.score;
                 },
 
                 moveDownRowsAbove: function (r) {
@@ -204,7 +213,7 @@ var game = {
                 },
 
                 clearArea: function (topLeft, bottomRight) {
-                    Debug.LOG_LINE('clearArea');
+//                    Debug.LOG_LINE('clearArea');
                     for (var r = topLeft.y; r <= bottomRight.y; ++r) {
                         for (var c = topLeft.x; c <= bottomRight.x; ++c) {
 //                            Debug.LOG_LINE(r + ' ' + c);
@@ -289,5 +298,8 @@ var game = {
 var Player1 = new Player('Player1');
 var Player2 = new Player('Player2');
 
+window.navigator.vibrate(200);
+Debug.LOG_LINE('vibrate');
+window.navigator.vibrate([200]);
 
 game.controls.startNewGame();
