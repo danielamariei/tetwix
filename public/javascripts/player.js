@@ -18,10 +18,18 @@ var Player = function (player) {
     // Player 1 or player 2
     this.player = player;
 
+    this.isGamePaused = false;
+
+
     this.currentPiece = generateRandomPieceWithController();
     this.nextPiece = generateRandomPieceWithController();
 
     this.play = function () {
+        if (this.isGamePaused) {
+            return
+        }
+        ;
+
         if (game.state.isGameOver) {
             Debug.LOG_LINE('before end()');
             game.controls.end();
@@ -51,21 +59,39 @@ var Player = function (player) {
         }, game.speed);
     };
 
+    this.pause = function () {
+        this.isGamePaused = true;
+    };
+
+    this.resume = function () {
+        if (this.isGamePaused) {
+            this.isGamePaused = false;
+            this.play();
+        }
+    };
+
     this.down = function () {
+        if (this.isGamePaused) return;
+        if (game.state.isGameOver) return;
         this.currentPiece.down();
     };
 
     this.right = function () {
+        if (this.isGamePaused) return;
         if (game.state.isGameOver) return;
         this.currentPiece.right();
     };
 
     this.left = function () {
+        if (this.isGamePaused) return;
         if (game.state.isGameOver) return;
         this.currentPiece.left();
     };
 
     this.rotateRight = function () {
+        if (this.isGamePaused) return;
+        if (game.state.isGameOver) return;
+
         this.currentPiece.rotateRight();
     };
 };

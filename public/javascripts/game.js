@@ -35,15 +35,31 @@ var game = {
             },
 
             pause: function () {
+                Debug.LOG_LINE('pause');
+                Player1.pause();
+                Player2.pause();
+//                game.ctx.fillStyle = 'rgba(100, 100, 100, 0.3)';
+//                game.ctx.fillRect(0, 0, game.width, game.height);
+
             },
 
             resume: function () {
+                Debug.LOG_LINE('resume');
+                Player1.resume();
+                Player2.resume();
+//                game.ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+//                game.ctx.fillRect(0, 0, game.width, game.height);
+
             },
 
             end: function () {
                 Debug.LOG_LINE('Game over');
                 game.ctx.fillStyle = 'rgba(100, 100, 100, 0.3)';
                 game.ctx.fillRect(0, 0, game.width, game.height);
+
+                // TO-DO
+                // Add extra functionality when game is over
+                // e.g. show menu to players, etc.
             }
         },
 
