@@ -15,9 +15,9 @@ var CellStates = {
 /* The Tetris game logic */
 
 var game = {
-        cellSize: 15,
+        cellSize: 50,
         rows: 20,
-        cols: 10,
+        cols: 40,
         speed: 1000,
         score: 0,
         scorePerLine: 100,
