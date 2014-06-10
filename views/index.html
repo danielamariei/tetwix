@@ -5,23 +5,6 @@
     <link rel="stylesheet" type="text/css" href="/stylesheets/index-style.css" />
 </head>
 <body>
-    <script>
-        window.fbAsyncInit = function() {
-            FB.init({
-                appId      : '811672858845207',
-                xfbml      : true,
-                version    : 'v2.0'
-            });
-        };
-
-        (function(d, s, id){
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) {return;}
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_US/sdk.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    </script>
     <div id="controls"></div>
     <canvas id="gameboard"></canvas>
     <menu>Menu</menu>
@@ -44,5 +27,7 @@
     <script src="/javascripts/leap-controls.js"></script>
     <script src="/javascripts/keyboard-controls.js"></script>
     <script src="/javascripts/gamepad-controls.js"></script>
+    <script src="/javascripts/facebook-score-sharing.js"></script>
+
 </body>
 </html>
