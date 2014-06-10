@@ -62,6 +62,12 @@ var game = {
                 // TO-DO
                 // Add extra functionality when game is over
                 // e.g. show menu to players, etc.
+            },
+
+            share: function() {
+                FB.login(function(){
+                    FB.api('/me/feed', 'post', {message: 'Scored ' + game.score + ' points playing TeTwix'});
+                }, {scope: 'publish_actions'});
             }
         },
 
