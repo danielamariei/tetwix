@@ -23,6 +23,8 @@ var PieceController = function (piece, player) {
     this.left = function () {
         if (!this.active) return;
 
+        if (this.topLeft.y < 4) return;
+
         this.erase();
 
         if (this.available({x: this.topLeft.x - 1, y: this.topLeft.y})) {
@@ -35,6 +37,8 @@ var PieceController = function (piece, player) {
 
     this.right = function () {
         if (!this.active) return;
+
+        if (this.topLeft.y < 4) return;
 
         this.erase();
 

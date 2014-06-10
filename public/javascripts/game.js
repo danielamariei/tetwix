@@ -65,8 +65,10 @@ var game = {
             },
 
             share: function() {
+                var msg = 'Scored ' + game.score + ' points playing TeTwix';
+
                 FB.login(function(){
-                    FB.api('/me/feed', 'post', {message: 'Scored ' + game.score + ' points playing TeTwix'});
+                    FB.api('/me/feed', 'post', {message: msg});
                 }, {scope: 'publish_actions'});
             }
         },
