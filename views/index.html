@@ -22,8 +22,10 @@
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
     </script>
-    <div id="controls"></div>
-    <canvas id="gameboard"></canvas>
+    <div id="game-wrapper">
+        <div id="overlay"></div>
+        <canvas id="gameboard"></canvas>
+    </div>
     <menu>Menu</menu>
     <button onclick="game.controls.pause()" >Pause</button>
     <button onclick="game.controls.resume()" >Resume </button>
