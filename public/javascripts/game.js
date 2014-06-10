@@ -94,7 +94,7 @@ var game = {
                     for (var i = 0; i < game.rows; ++i) {
                         game.state.board.state[i] = [];
                         for (var j = 0; j < game.cols; ++j) {
-                            game.state.board.state[i][j] = game.state.board.createCell(j * game.cellSize, i * game.cellSize);
+                            game.state.board.state[i][j] = new Cell(j * game.cellSize, i * game.cellSize);
                             game.state.board.state[i][j].drawOutline("#888888");
                         }
                     }
@@ -235,46 +235,6 @@ var game = {
                 },
                 drawCell: function (r, c, color, state) {
                     game.state.board.state[r][c].draw(color, state);
-                },
-
-                createCell: function (x, y) {
-                    var cell = {
-                        state: CellStates.free,
-                        fillColor: null,
-                        strokeColor: null,
-
-                        drawOutline: function (color) {
-                            this.strokeColor = color;
-                            game.ctx.strokeStyle = color;
-                            game.ctx.strokeRect(x, y, game.cellSize, game.cellSize);
-                        },
-
-                        draw: function (color, state) {
-                            var cellState = state || CellStates.active;
-                            if (color) {
-                                this.fillColor = color;
-                            }
-                            game.ctx.fillStyle = this.fillColor;
-                            game.ctx.fillRect(x + 1, y + 1, game.cellSize - 2, game.cellSize - 2);
-                            cell.state = cellState;
-                        },
-
-                        erase: function () {
-                            game.ctx.clearRect(x + 1, y + 1, game.cellSize - 2, game.cellSize - 2);
-                            cell.state = CellStates.free;
-                        },
-
-                        toggle: function () {
-                            if (cell.state === CellStates.free) {
-                                cell.draw('rgb(200,0,0)');
-                            } else {
-                                cell.erase();
-                            }
-
-                        }
-                    };
-
-                    return cell;
                 }
             }
         },
@@ -304,8 +264,9 @@ var game = {
 var Player1 = new Player('Player1');
 var Player2 = new Player('Player2');
 
+
 window.navigator.vibrate(200);
-Debug.LOG_LINE('vibrate');
 window.navigator.vibrate([200]);
+
 
 game.controls.startNewGame();
