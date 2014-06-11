@@ -71,3 +71,26 @@ section {
     width: 23%;
     margin: 5px;
 }
+.control {
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    background: lightgray;
+
+}
+#start-page {
+    background-image: url("images/start-page.png");
+    background-size: 100%;
+}
+#pause {
+    background-image: url("images/pause.png");
+    background-size: 100%;
+}
+#resume {
+    background-image: url("images/play.png");
+    background-size: 100%;
+}
+#restart {
+    background-image: url("images/restart.png");
+    background-size: 100%;
+}

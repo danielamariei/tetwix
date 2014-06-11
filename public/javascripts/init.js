@@ -57,7 +57,7 @@ $("#game-wrapper" ).delegate("#control.play", "click", function() {
 $("#game-wrapper" ).delegate("#control.pause", "click", function() {
     $("#control").removeClass("pause");
     $("#control").addClass("play");
-    $("#control").attr('title', "Play")
+    $("#control").attr('title', "Resume")
     $("#pause").show();
     game.controls.pause();
 });
