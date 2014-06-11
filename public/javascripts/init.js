@@ -18,7 +18,7 @@ function startNewGame() {
     } else {
         $("#game-wrapper").show();
         $("#start-screen").hide();
-        game.controls.resume()
+        game.controls.resume();
     }
 }
 $("#start-screen" ).delegate("#campaign", "click", startNewGame);
