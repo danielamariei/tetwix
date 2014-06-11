@@ -1,0 +1,73 @@
+#guide-wrapper {
+    width: 800px;
+    margin: 0 auto;
+    font-size: 14pt;
+}
+
+header img {
+    display: block;
+    margin: 0 auto;
+}
+
+header p {
+    font-family: PixelLCD;
+    font-size: 70px;
+    text-align: center;
+}
+
+#content-wrapper {
+    background: #fafafa;
+    padding: 15px;
+    text-align: justify;
+}
+
+nav {
+    margin-left: 50px;
+}
+
+nav a, nav a:visited, nav a:hover {
+    display: block;
+    font-style: normal;
+    font-size: 20px;
+    text-decoration: none;
+    font-family: "Gautami";
+    color: #000;
+    font-weight: bold;
+
+}
+
+section {
+    text-indent: 35px;
+    margin-bottom: 15px;
+}
+
+#start-hint {
+    margin: 0 auto;
+    width: 50%;
+    height: 50%;
+    display: block;
+}
+#start-game-button-span {
+   font-family: "Gautami";
+    background: #FFC42A;
+    font-size: 14px;
+    font-weight: bold;
+    vertical-align: middle;
+    padding-left: 5px;
+    padding-right: 5px;
+    border: black solid 1px;
+    display: inline-block;
+    width: 150px;
+    height: 20px;
+}
+#pieces-wrapper {
+    display: block;
+    height: 390px;
+    margin-left: 2.5%;
+}
+.game-pieces {
+    display: block;
+    float: left;
+    width: 23%;
+    margin: 5px;
+}

@@ -2,12 +2,6 @@
     /*background-color: rgb(35, 113, 159);*/
 /*}*/
 
-@font-face
-{
-    font-family: PixelLCD;
-    src: url("fonts/Pixel-LCD-7.ttf");
-}
-
 #gameboard {
     padding-left: 0;
     padding-right: 0;

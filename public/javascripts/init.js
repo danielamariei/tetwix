@@ -21,7 +21,11 @@ function startNewGame() {
         game.controls.resume();
     }
 }
-$("#start-screen" ).delegate("#campaign", "click", startNewGame);
+$("#start-screen").delegate("#campaign", "click", startNewGame);
+
+$("#start-screen").delegate("#help", "click", function() {
+    window.location.href="/guide";
+})
 
 /**-----------------*/
 $("#game-wrapper" ).delegate("#share-score", "click", function() {

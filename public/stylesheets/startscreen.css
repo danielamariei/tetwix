@@ -6,7 +6,8 @@
 #buttons-wrapper {
     display: block;
     margin: 0 auto;
-    width: 10%;
+    width: 410px;
+    height: 30px;
 }
 
 #buttons-wrapper p {
@@ -20,6 +21,19 @@
     width: 200px;
     background: #FFC42A;
     border: 1px black solid;
+    float: left;
+}
+
+#help {
+    height: 30px;
+    width: 200px;
+    background: #29ABE2;
+    border: 1px black solid;
+    float: right;
+}
+
+.startscreen-button {
+    margin: 0 auto;
 }
 
 .startscreen-button:hover {
