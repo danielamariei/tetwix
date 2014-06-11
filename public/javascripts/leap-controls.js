@@ -54,10 +54,10 @@ controller.on('frame', function (frame) {
 
 // init
 controller.on('ready', function () {
-    Debug.LOG_LINE('ready');
+   // Debug.LOG_LINE('ready');
 });
 
 controller.connect();
 
-Debug.LOG_LINE("Waiting for device to connect.")
+//Debug.LOG_LINE("Waiting for device to connect.")
 

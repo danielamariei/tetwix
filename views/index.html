@@ -2,16 +2,27 @@
 <html>
 <head>
     <title>TeTwix</title>
-    <link rel="stylesheet" type="text/css" href="/stylesheets/index-style.css" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/game.css" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/startscreen.css" />
 </head>
 <body>
+    <div id="start-screen">
+        <div id="logo-wrapper">
+            <img src="/images/tetwix-logo-500.png">
+        </div>
+        <div id="buttons-wrapper">
+            <div id="campaign" class="startscreen-button">
+                <p>CAMPAIGN</p>
+            </div>
+        </div>
+    </div>
     <div id="game-wrapper">
         <div id="overlay">
             <div id="menu">
                 <div id="buttons">
                     <div id="start" class="menu-button"></div>
                     <div id="settings" class="menu-button"></div>
-                    <div id="control" class="menu-button"></div>
+                    <div id="control" class="menu-button pause"></div>
                     <div id="restart" class="menu-button"></div>
                 </div>
             </div>
@@ -28,17 +39,18 @@
             </div>
         </div>
     </div>
-
+<!--
     <menu>Menu</menu>
     <button onclick="game.controls.pause()" >Pause</button>
     <button onclick="game.controls.resume()" >Resume </button>
     <button onclick="game.controls.share()">Share score on Facebook</button>
+    <button onclick="game.controls.end()">End</button>
 
     <div id="scoreDebug">Scor--</div>
-    <div id="debugging"></div>
+    <div id="debugging"></div>-->
 
     <script src="/javascripts/libs/jquery-2.1.1.min.js"></script>
-    <script src="/javascripts/debugging.js"></script>
+    <!--<script src="/javascripts/debugging.js"></script>-->
     <script src="/javascripts/pieces.js"></script>
     <script src="/javascripts/point.js"></script>
     <script src="/javascripts/player.js"></script>
@@ -51,10 +63,7 @@
     <script src="/javascripts/keyboard-controls.js"></script>
     <script src="/javascripts/gamepad-controls.js"></script>
     <script src="/javascripts/facebook-score-sharing.js"></script>
-
-    <script>
-        $('#game-over').hide();
-    </script>
+    <script src="/javascripts/init.js"></script>
 
 </body>
 </html>

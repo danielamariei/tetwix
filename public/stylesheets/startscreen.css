@@ -1,0 +1,28 @@
+#logo-wrapper img {
+    margin: 0 auto;
+    display: block;
+}
+
+#buttons-wrapper {
+    display: block;
+    margin: 0 auto;
+    width: 10%;
+}
+
+#buttons-wrapper p {
+    font-family: "Gautami";
+    font-weight: bold;
+    text-align: center;
+    line-height: 0.5em;
+}
+#campaign {
+    height: 30px;
+    width: 200px;
+    background: #FFC42A;
+    border: 1px black solid;
+}
+
+.startscreen-button:hover {
+    background: lightgray !important;
+    cursor: pointer;
+}

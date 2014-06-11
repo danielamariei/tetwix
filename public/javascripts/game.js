@@ -26,18 +26,18 @@ var game = {
 
         controls: {
             startNewGame: function () {
-                Debug.LOG_LINE("startNewGame");
+               // Debug.LOG_LINE("startNewGame");
                 game.state.board.init();
-                Debug.LOG_LINE("after init");
+                //Debug.LOG_LINE("after init");
                 game.helpers.attachListeners();
-                Debug.LOG_LINE("after attaching listeners");
+               // Debug.LOG_LINE("after attaching listeners");
 
                 Player1.play();
                 Player2.play();
             },
 
             pause: function () {
-                Debug.LOG_LINE('pause');
+               // Debug.LOG_LINE('pause');
                 Player1.pause();
                 Player2.pause();
 //                game.ctx.fillStyle = 'rgba(100, 100, 100, 0.3)';
@@ -56,12 +56,17 @@ var game = {
 
             end: function () {
 //                Debug.LOG_LINE('Game over');
-                game.ctx.fillStyle = 'rgba(100, 100, 100, 0.3)';
-                game.ctx.fillRect(0, 0, game.width, game.height);
+                /*game.ctx.fillStyle = 'rgba(100, 100, 100, 0.3)';
+                game.ctx.fillRect(0, 0, game.width, game.height);*/
+                $('#game-over').show();
 
                 // TO-DO
                 // Add extra functionality when game is over
                 // e.g. show menu to players, etc.
+            },
+
+            restart: function () {
+
             },
 
             share: function() {
@@ -187,7 +192,7 @@ var game = {
                 },
 
                 clearRow: function (r) {
-                    Debug.LOG_LINE('Clearing row');
+                 //   Debug.LOG_LINE('Clearing row');
                     for (var c = 0; c < game.cols; ++c) {
                         game.state.board.eraseCell(r, c);
                     }
@@ -271,4 +276,4 @@ window.navigator.vibrate(200);
 window.navigator.vibrate([200]);
 
 
-game.controls.startNewGame();
+//game.controls.startNewGame();
