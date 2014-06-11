@@ -1,3 +1,13 @@
+/*body {*/
+    /*background-color: rgb(35, 113, 159);*/
+/*}*/
+
+@font-face
+{
+    font-family: PixelLCD;
+    src: url("fonts/Pixel-LCD-7.ttf");
+}
+
 #gameboard {
     padding-left: 0;
     padding-right: 0;
@@ -12,13 +22,112 @@
     position: relative;
 }
 
-#overlay{
+#overlay {
+    display: block;
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 20%;
+    width: 78.4%;
+    height: 19.7%;
     z-index: 10;
-    background-color: rgba(0,0,0,0.5); /*dim the background*/
+    margin-left: 10.8%;
+    background-color: #ffffff; /*dim the background*/
+    margin-top: 0.15%;
+}
+#game-over {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 98%;
+    height: 79.7%;
+    z-index: 10;
+    margin-top: 9.9%;
+    margin-left: 1%;
+    background-color:  rgba(0,0,0,0.2); /*dim the background*/
+}
+#game-over p {
+    display: block;
+    font-family: PixelLCD;
+    margin: 15% 0 auto;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 20vh;
+    color: darkred;
+}
+
+#share-score {
+    display: block;
+    width: 30%;
+    height: 8%;
+    margin: 0 auto;
+}
+
+#share-score-text {
+    display: block;
+    width: 90%;
+    margin-left: 10%;
+    padding-left: 5%;
+}
+
+#share-score p {
+    color: #ffffff;
+    font-size: 3vh;
+    text-align: left;
+    padding-top: 2.5%;
+}
+
+#fb-icon {
+    height: 100%;
+    width: 10%;
+    float: left;
+    background: url("images/facebook-8bit.png") no-repeat center;
+    background-size: 100%;
+}
+
+#menu {
+/*    background: yellow;*/
+    width: 100%;
+    height: 50%;
+    margin-top: 0.5%;
+}
+#buttons {
+    margin: 0 auto;
+    width: 25%;
+    height: 100%;
+    /*background: blue;*/
+}
+
+.menu-button {
+    float: left;
+    margin: 0 1%;
+    width: 23%;
+    height: 94%;
+    background: lightgray;
+
+}
+
+#score {
+    font-family: PixelLCD;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 8vh;
+}
+
+#start {
+    background-image: url("images/start-page.png");
+    background-size: 100%;
+}
+#settings {
+    background-image: url("images/settings.png");
+    background-size: 100%;
+}
+#control {
+    background-image: url("images/pause.png");
+    background-size: 100%;
+}
+#restart {
+    background-image: url("images/restart.png");
+    background-size: 100%;
 }
 

@@ -5,45 +5,56 @@
     <link rel="stylesheet" type="text/css" href="/stylesheets/index-style.css" />
 </head>
 <body>
-    <script>
-        window.fbAsyncInit = function() {
-            FB.init({
-                appId      : '811672858845207',
-                xfbml      : true,
-                version    : 'v2.0'
-            });
-        };
-
-        (function(d, s, id){
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) {return;}
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_US/sdk.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    </script>
     <div id="game-wrapper">
-        <div id="overlay"></div>
+        <div id="overlay">
+            <div id="menu">
+                <div id="buttons">
+                    <div id="start" class="menu-button"></div>
+                    <div id="settings" class="menu-button"></div>
+                    <div id="control" class="menu-button"></div>
+                    <div id="restart" class="menu-button"></div>
+                </div>
+            </div>
+            <p id="score">0</p>
+        </div>
         <canvas id="gameboard"></canvas>
+        <div id="game-over">
+            <p>Game Over</p>
+            <div id="share-score">
+                <div id="fb-icon"></div>
+                <div id="share-score-text">
+                    <p>Share on Facebook</p>
+                </div>
+            </div>
+        </div>
     </div>
+
     <menu>Menu</menu>
     <button onclick="game.controls.pause()" >Pause</button>
     <button onclick="game.controls.resume()" >Resume </button>
-    <button onclick="game.controls.share()">Share</button>
+    <button onclick="game.controls.share()">Share score on Facebook</button>
 
-    <div id="score">Scor--</div>
+    <div id="scoreDebug">Scor--</div>
     <div id="debugging"></div>
 
+    <script src="/javascripts/libs/jquery-2.1.1.min.js"></script>
     <script src="/javascripts/debugging.js"></script>
     <script src="/javascripts/pieces.js"></script>
     <script src="/javascripts/point.js"></script>
     <script src="/javascripts/player.js"></script>
     <script src="/javascripts/piece-controller.js"></script>
+    <script src="/javascripts/cell.js"></script>
     <script src="/javascripts/game.js"></script>
     <script src="https://js.leapmotion.com/leap-0.5.0.js"></script>
     <script src="/javascripts/libs/curtsy.js"></script>
     <script src="/javascripts/leap-controls.js"></script>
     <script src="/javascripts/keyboard-controls.js"></script>
     <script src="/javascripts/gamepad-controls.js"></script>
+    <script src="/javascripts/facebook-score-sharing.js"></script>
+
+    <script>
+        $('#game-over').hide();
+    </script>
+
 </body>
 </html>
