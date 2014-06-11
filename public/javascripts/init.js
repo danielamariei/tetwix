@@ -1,6 +1,7 @@
 var isGameInit = false;
 /**-----------------*/
 $('#game-over').hide();
+$('#pause').hide();
 $('#game-wrapper').hide();
 $('#share-score').hover(function() {
     $("#share-score p").addClass("fb-hover");
@@ -48,7 +49,8 @@ $("#game-wrapper" ).delegate("#start", "click", function() {
 $("#game-wrapper" ).delegate("#control.play", "click", function() {
     $("#control").removeClass("play");
     $("#control").addClass("pause");
-    $("#control").attr('title', "Pause")
+    $("#control").attr('title', "Pause");
+    $("#pause").hide();
     game.controls.resume();
 });
 
@@ -56,6 +58,7 @@ $("#game-wrapper" ).delegate("#control.pause", "click", function() {
     $("#control").removeClass("pause");
     $("#control").addClass("play");
     $("#control").attr('title', "Play")
+    $("#pause").show();
     game.controls.pause();
 });
 

@@ -28,7 +28,7 @@
     background-color: #fafafa;
     margin-top: 0.15%;
 }
-#game-over {
+#game-over, #pause {
     display: block;
     position: absolute;
     top: 0;
@@ -48,6 +48,15 @@
     vertical-align: middle;
     font-size: 20vh;
     color: darkred;
+}
+
+#pause {
+    display: block;
+    font-family: PixelLCD;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 20vh;
+    color: #FFC42A;
 }
 
 #share-score {
