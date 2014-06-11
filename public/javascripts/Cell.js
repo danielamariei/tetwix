@@ -28,6 +28,7 @@ var Cell = function (x, y) {
     };
 
     this.erase = function () {
+//        Debug.LOG_LINE('cell erase');
         game.ctx.clearRect(x + 1, y + 1, game.cellSize - 2, game.cellSize - 2);
         this.state = CellStates.free;
     };

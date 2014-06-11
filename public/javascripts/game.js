@@ -12,6 +12,7 @@ var CellStates = {
     dead: 3
 };
 
+
 /* The Tetris game logic */
 
 var game = {
@@ -20,28 +21,27 @@ var game = {
         cols: 40,
         speed: 1000,
         score: 0,
+        level: 1,
         scorePerLine: 100,
         canvas: null,
         ctx: null,
 
         controls: {
             startNewGame: function () {
-               // Debug.LOG_LINE("startNewGame");
+                Debug.LOG_LINE("startNewGame");
                 game.state.board.init();
-                //Debug.LOG_LINE("after init");
+                Debug.LOG_LINE("after init");
                 game.helpers.attachListeners();
-               // Debug.LOG_LINE("after attaching listeners");
+                Debug.LOG_LINE("after attaching listeners");
 
                 Player1.play();
                 Player2.play();
             },
 
             pause: function () {
-               // Debug.LOG_LINE('pause');
+                // Debug.LOG_LINE('pause');
                 Player1.pause();
                 Player2.pause();
-//                game.ctx.fillStyle = 'rgba(100, 100, 100, 0.3)';
-//                game.ctx.fillRect(0, 0, game.width, game.height);
 
             },
 
@@ -49,15 +49,13 @@ var game = {
 //                Debug.LOG_LINE('resume');
                 Player1.resume();
                 Player2.resume();
-//                game.ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
-//                game.ctx.fillRect(0, 0, game.width, game.height);
 
             },
 
             end: function () {
 //                Debug.LOG_LINE('Game over');
                 /*game.ctx.fillStyle = 'rgba(100, 100, 100, 0.3)';
-                game.ctx.fillRect(0, 0, game.width, game.height);*/
+                 game.ctx.fillRect(0, 0, game.width, game.height);*/
                 $('#game-over').show();
 
                 // TO-DO
@@ -66,13 +64,22 @@ var game = {
             },
 
             restart: function () {
+                game.state.board.erase();
+//                Debug.LOG_LINE('restart');
 
+                game.score = 0;
+                game.level = 1;
+
+                Player1.restart();
+                Player2.restart();
+
+                document.getElementById("score").innerHTML = game.score;
             },
 
-            share: function() {
+            share: function () {
                 var msg = 'Scored ' + game.score + ' points playing TeTwix';
 
-                FB.login(function(){
+                FB.login(function () {
                     FB.api('/me/feed', 'post', {message: msg});
                 }, {scope: 'publish_actions'});
             }
@@ -112,6 +119,14 @@ var game = {
                             game.state.board.state[i][game.cols - j - 1].drawOutline("#FFFFFF");
                         }
                     }
+
+//                    var pieceBox = 4 * game.cellSize;
+//                    game.ctx.strokeStyle = '#888888';
+////                    game.ctx.fillStyle = '#888888';
+//                    game.ctx.strokeRect(pieceBox, 0, game.width - pieceBox * 2, pieceBox);
+//                    game.ctx.strokeRect(pieceBox + 1, 0, 1, pieceBox);
+//                    game.ctx.strokeRect(pieceBox, 0, game.width - pieceBox * 2, pieceBox);
+////                    game.ctx.fillRect(pieceBox, 0, game.width - pieceBox * 2, pieceBox);
                 },
 
                 isOnBoard: function (r, c) {
@@ -192,7 +207,7 @@ var game = {
                 },
 
                 clearRow: function (r) {
-                 //   Debug.LOG_LINE('Clearing row');
+                    //   Debug.LOG_LINE('Clearing row');
                     for (var c = 0; c < game.cols; ++c) {
                         game.state.board.eraseCell(r, c);
                     }
@@ -217,9 +232,12 @@ var game = {
 
 
                 erase: function () {
+                    Debug.LOG_LINE('erase');
                     for (var i = 0; i < game.rows; ++i) {
                         for (var j = 0; j < game.cols; ++j) {
-                            eraseCell(i, j);
+//                            Debug.LOG_LINE('erase ' + i + ' ' + j);
+                            this.eraseCell(i, j);
+//                            Debug.LOG_LINE('after erase ' + i + ' ' + j);
                         }
                     }
 
@@ -238,6 +256,7 @@ var game = {
                 },
 
                 eraseCell: function (r, c) {
+//                    Debug.LOG_LINE('eraseCell');
                     game.state.board.state[r][c].erase();
                 },
                 drawCell: function (r, c, color, state) {
