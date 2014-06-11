@@ -16,10 +16,10 @@ var CellStates = {
 /* The Tetris game logic */
 
 var game = {
-        cellSize: 20,
+        cellSize: 50,
         rows: 20,
-        cols: 10,
-        speed: 1000,
+        cols: 40,
+        speed: 1200,
         score: 0,
         level: 1,
         scorePerLine: 100,
@@ -165,6 +165,7 @@ var game = {
                             game.state.completedLinesAtThisLevel = 0;
                             if (game.level < 10) {
                                 ++game.level;
+                                game.speed -= 100;
                             }
                         }
 
