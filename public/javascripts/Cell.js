@@ -6,6 +6,14 @@
  * To change this template use File | Settings | File Templates.
  */
 
+/* The states in which a cell may be. */
+var CellStates = {
+    free: 1,
+    active: 2,
+    dead: 3
+};
+
+
 var Cell = function (x, y) {
     this.state = CellStates.free;
     this.fillColor = null;

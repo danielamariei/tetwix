@@ -60,14 +60,11 @@ var Player = function (player) {
     };
 
     this.restart = function() {
-//        Debug.LOG_LINE('player.restart()');
         this.currentPiece.erase();
         this.nextPiece.erase();
 
-//        Debug.LOG_LINE('player.restart() -- before generating random pieces');
         this.currentPiece = generateRandomPieceWithController();
         this.nextPiece = generateRandomPieceWithController();
-//        Debug.LOG_LINE('after player.restart()');
     };
 
     this.pause = function () {

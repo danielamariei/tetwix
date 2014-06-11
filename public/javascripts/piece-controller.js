@@ -53,8 +53,6 @@ var PieceController = function (piece, player) {
             if (this.available({x: this.topLeft.x + 1, y: this.topLeft.y})) {
                 this.topLeft.right();
                 this.bottomRight.right();
-            } else {
-//            Debug.LOG_LINE('right not available');
             }
 
             this.draw();
@@ -113,7 +111,6 @@ var PieceController = function (piece, player) {
         };
 
         this.detonate = function () {
-//        Debug.LOG_LINE('detonate');
             game.state.board.clearArea(this.topLeft, {x: this.topLeft.x + this.piece.cols - 1, y: this.topLeft.y + this.piece.rows - 1});
         };
 
@@ -127,7 +124,6 @@ var PieceController = function (piece, player) {
 
                     if (this.piece.state[y][x] == 1) {
                         if (!this.isOnBoard(topLeft.y + y, topLeft.x + x)) {
-//                            Debug.LOG_LINE('not on board');
                             return false;
                         }
 
@@ -146,7 +142,6 @@ var PieceController = function (piece, player) {
                 for (var y = 0; y < this.piece.rows; ++y) {
                     if (this.piece.state[y][x] == 1) {
                         if (!this.isOnBoard(topLeft.y + y, topLeft.x + x)) {
-//                            Debug.LOG_LINE('not on board');
                             return false;
                         }
 
@@ -169,7 +164,7 @@ var PieceController = function (piece, player) {
                         } else if ((topLeft.x + x) >= (game.cols - 4) && (topLeft.x + x) < game.cols) {
                             continue;
                         } else {
-                           return true;
+                            return true;
                         }
                     }
                 }

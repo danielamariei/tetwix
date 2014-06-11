@@ -7,6 +7,7 @@
  */
 /* From: https://developer.mozilla.org/en-US/docs/Web/Guide/API/Gamepad */
 
+// Not tested yet.
 
 var gamepads = {};
 

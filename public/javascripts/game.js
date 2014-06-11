@@ -6,15 +6,8 @@
  * To change this template use File | Settings | File Templates.
  */
 
-var CellStates = {
-    free: 1,
-    active: 2,
-    dead: 3
-};
-
 
 /* The Tetris game logic */
-
 var game = {
         cellSize: 50,
         rows: 20,
@@ -39,7 +32,6 @@ var game = {
             },
 
             pause: function () {
-                // Debug.LOG_LINE('pause');
                 Player1.pause();
                 Player2.pause();
 
@@ -65,7 +57,6 @@ var game = {
 
             restart: function () {
                 game.state.board.erase();
-//                Debug.LOG_LINE('restart');
 
                 game.score = 0;
                 game.level = 1;
@@ -120,14 +111,6 @@ var game = {
                             game.state.board.state[i][game.cols - j - 1].drawOutline("#FFFFFF");
                         }
                     }
-
-//                    var pieceBox = 4 * game.cellSize;
-//                    game.ctx.strokeStyle = '#888888';
-////                    game.ctx.fillStyle = '#888888';
-//                    game.ctx.strokeRect(pieceBox, 0, game.width - pieceBox * 2, pieceBox);
-//                    game.ctx.strokeRect(pieceBox + 1, 0, 1, pieceBox);
-//                    game.ctx.strokeRect(pieceBox, 0, game.width - pieceBox * 2, pieceBox);
-////                    game.ctx.fillRect(pieceBox, 0, game.width - pieceBox * 2, pieceBox);
                 },
 
                 isOnBoard: function (r, c) {
@@ -145,7 +128,6 @@ var game = {
                 },
 
                 verifyRowsThatNeedToBeCleared: function () {
-//                Debug.LOG_LINE('verifyRowsThatNeedToBeCleared');
                     for (var r = game.rows - 1; r > 3; --r) {
                         var clearedRows = 0;
                         while (this.isRowDead(r)) {
@@ -153,12 +135,10 @@ var game = {
                             this.moveDownRowsAbove(r);
 
                             ++clearedRows;
-
                         }
 
 
                         game.score += (clearedRows * clearedRows * game.scorePerLine * game.level);
-//                        Debug.LOG_LINE(game.score);
                         game.state.completedLinesAtThisLevel += clearedRows;
 
                         if (game.state.completedLinesAtThisLevel >= 5) {
@@ -174,14 +154,12 @@ var game = {
                 },
 
                 moveDownRowsAbove: function (r) {
-//                Debug.LOG_LINE('moveDownRowsAbove');
                     for (var i = r - 1; i > 3; --i) {
                         this.moveDownRow(i);
                     }
                 },
 
                 moveDownRow: function (r) {
-//                Debug.LOG_LINE('moveDownRow')
                     for (var c = 0; c < game.cols; ++c) {
                         this.moveDownCell(r, c);
                     }
@@ -191,18 +169,13 @@ var game = {
                     if (r < game.rows - 1) {
                         if (this.isCellFree(r + 1, c)) {
 
-                            //                Debug.LOG_LINE('moveDownCell')
                             var state = game.state.board.state[r][c].state;
                             var color = game.state.board.state[r][c].fillColor;
 
                             if (state === CellStates.dead) {
-                                //                    Debug.LOG_LINE(state);
-
                                 this.eraseCell(r, c);
                                 this.drawCell(r + 1, c, color, CellStates.dead);
                             }
-
-//                            this.moveDownCell(r + 1, c);
                         }
                     } else {
                         this.verifyRowsThatNeedToBeCleared();
@@ -220,7 +193,6 @@ var game = {
                 },
 
                 clearRow: function (r) {
-                    //   Debug.LOG_LINE('Clearing row');
                     for (var c = 0; c < game.cols; ++c) {
                         game.state.board.eraseCell(r, c);
                     }
@@ -231,7 +203,6 @@ var game = {
                 },
 
                 isCellDead: function (r, c) {
-//                Debug.LOG_LINE('isCellDead' + r + ' ' + c);
                     return game.state.board.state[r][c].state === CellStates.dead;
                 },
 
@@ -248,19 +219,15 @@ var game = {
                     Debug.LOG_LINE('erase');
                     for (var i = 0; i < game.rows; ++i) {
                         for (var j = 0; j < game.cols; ++j) {
-//                            Debug.LOG_LINE('erase ' + i + ' ' + j);
                             this.eraseCell(i, j);
-//                            Debug.LOG_LINE('after erase ' + i + ' ' + j);
                         }
                     }
 
                 },
 
                 clearArea: function (topLeft, bottomRight) {
-//                    Debug.LOG_LINE('clearArea');
                     for (var r = topLeft.y; r <= bottomRight.y; ++r) {
                         for (var c = topLeft.x; c <= bottomRight.x; ++c) {
-//                            Debug.LOG_LINE(r + ' ' + c);
                             if (this.isOnBoard(r, c)) {
                                 this.eraseCell(r, c);
                             }
@@ -269,7 +236,6 @@ var game = {
                 },
 
                 eraseCell: function (r, c) {
-//                    Debug.LOG_LINE('eraseCell');
                     game.state.board.state[r][c].erase();
                 },
                 drawCell: function (r, c, color, state) {
