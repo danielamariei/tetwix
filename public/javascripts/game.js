@@ -16,9 +16,9 @@ var CellStates = {
 /* The Tetris game logic */
 
 var game = {
-        cellSize: 50,
+        cellSize: 20,
         rows: 20,
-        cols: 40,
+        cols: 10,
         speed: 1000,
         score: 0,
         level: 1,
@@ -88,6 +88,7 @@ var game = {
 
         state: {
             isGameOver: false,
+            completedLinesAtThisLevel: 0,
 
             board: {
                 state: null,
@@ -152,10 +153,21 @@ var game = {
                             this.moveDownRowsAbove(r);
 
                             ++clearedRows;
+
                         }
 
-                        game.score += (clearedRows * clearedRows * game.scorePerLine);
+
+                        game.score += (clearedRows * clearedRows * game.scorePerLine * game.level);
 //                        Debug.LOG_LINE(game.score);
+                        game.state.completedLinesAtThisLevel += clearedRows;
+
+                        if (game.state.completedLinesAtThisLevel >= 5) {
+                            game.state.completedLinesAtThisLevel = 0;
+                            if (game.level < 10) {
+                                ++game.level;
+                            }
+                        }
+
                     }
                     document.getElementById("score").innerHTML = game.score;
                 },
