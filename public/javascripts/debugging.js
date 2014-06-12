@@ -20,4 +20,4 @@ var Debugging = function () {
     };
 };
 
-var Debug = new Debugging();
+//var Debug = new Debugging();

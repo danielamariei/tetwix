@@ -21,11 +21,11 @@ var game = {
 
         controls: {
             startNewGame: function () {
-                Debug.LOG_LINE("startNewGame");
+                //Debug.LOG_LINE("startNewGame");
                 game.state.board.init();
-                Debug.LOG_LINE("after init");
+                //Debug.LOG_LINE("after init");
                 game.helpers.attachListeners();
-                Debug.LOG_LINE("after attaching listeners");
+                //Debug.LOG_LINE("after attaching listeners");
 
                 Player1.play();
                 Player2.play();
@@ -216,7 +216,7 @@ var game = {
 
 
                 erase: function () {
-                    Debug.LOG_LINE('erase');
+                    //Debug.LOG_LINE('erase');
                     for (var i = 0; i < game.rows; ++i) {
                         for (var j = 0; j < game.cols; ++j) {
                             this.eraseCell(i, j);

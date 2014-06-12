@@ -67,7 +67,7 @@ var PieceController = function (piece, player) {
             this.piece.rotateRight();
 
             if (!this.available(this.topLeft)) {
-                Debug.LOG_LINE('rotateRight');
+                //Debug.LOG_LINE('rotateRight');
                 this.piece.rotateLeft();
             }
 

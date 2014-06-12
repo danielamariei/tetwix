@@ -1,4 +1,4 @@
-/**
+                     /**
  * Created with IntelliJ IDEA.
  * User: workstation
  * Date: 6/8/14
@@ -31,9 +31,9 @@ var Player = function (player) {
         ;
 
         if (game.state.isGameOver) {
-            Debug.LOG_LINE('before end()');
+           //Debug.LOG_LINE('before end()');
             game.controls.end();
-            Debug.LOG_LINE('after end()');
+            //Debug.LOG_LINE('after end()');
             return;
         }
 
