@@ -28,14 +28,14 @@ The option with the highest number of points is chosen.
 
 Criteria | Drop-down list | Radio buttons | Range input
 ---------|----------------|---------------|------------
- C1 |  | * | *
+ C1 |  | * | * 
  C2 | * | * | * 
  C3 | * | * | * 
  C4 |  | * | * 
- C5 |  | * | *
- C6 |  | * | *
- C7 |  |  | *
- Total | 2 | 6 | 7
+ C5 |  | * | * 
+ C6 |  | * | * 
+ C7 |  |  | * 
+ Total | 2 | 6 | 7 
  
 ### Board Style
 #### Question
@@ -104,7 +104,7 @@ O5: Locomotion
 
 O6: Audio
 ![](https://github.com/danielamariei/tetwix/blob/master/wiki-resources/images/input-types/voice-force-down.jpg)
-![](https://github.com/danielamariei/tetwix/blob/master/wiki-resources/images/input-types/voice-move-left-right.jpg)
+![](https://github.com/danielamariei/tetwix/blob/master/wiki-resources/images/input-types/voice-left-right.jpg)
 ![](https://github.com/danielamariei/tetwix/blob/master/wiki-resources/images/input-types/voice-rotate-cw-ccw.jpg)
 
 
