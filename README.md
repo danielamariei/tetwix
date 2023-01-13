@@ -90,10 +90,11 @@ At this, final level, the user consciously takes into consideration and reflects
 #### (Pseudo-)Personas
 In order to better understand the needs of the people we are designing the system for, we will break the audience into smaller groups (segments). These (pseudo-)personas will identify significant behavior patterns while synthesizing the most relevant goals and characteristics the users that belong into a certain segment have.Keeping them in mind will help us make rational and informed decisions at every step of the project development process.
 
-Primary
-Secondary
-Supplemental
-Negative 
+#### Personas
+* [Primary Persona](https://danielamariei.github.io/tetwix/wiki-resources/html/personas/primary-persona.html)
+* [Secondary Persona](https://danielamariei.github.io/tetwix/wiki-resources/html/personas/secondary-persona-wiki.html)
+* [Supplemental Persona](https://danielamariei.github.io/tetwix/wiki-resources/html/personas/supplemental-persona.html)
+* [Negative Persona](https://danielamariei.github.io/tetwix/wiki-resources/html/personas/negative-persona.html)
 
 ## Questions, Options, Criteria (QOC)
 
