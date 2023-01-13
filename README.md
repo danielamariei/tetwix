@@ -1,10 +1,10 @@
-## Brand
+## Introduction
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/danielamariei/tetwix/master/public/images/tetwix-logo-500.png">
+    <img src="https://raw.githubusercontent.com/danielamariei/tetwix/master/public/images/tetwix-logo-500.png" width="300" height="300">
 </p>
 
-![TeTwix logo]()
+
 ### Nostalgia & Bonding
 Puzzle games are one of the most fun and competitive out on the market. But most of us have one retro love of this type: **Tetris**  
 **TeTwix** promises to bring back to you the thrill of achieving a new hi-score, of clearing a line in the last moment, of scoring a combo, of challenging your friends. If you love Tetris you have to try TeTwix.
