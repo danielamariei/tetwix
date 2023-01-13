@@ -57,6 +57,7 @@ var game = {
 
             restart: function () {
                 game.state.board.erase();
+                game.state.isGameOver = false;
 
                 game.score = 0;
                 game.level = 1;
