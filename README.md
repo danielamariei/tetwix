@@ -26,3 +26,7 @@ You can choose to play the traditional way by using the keyboard and mouse or a 
 While playing the game you will notice some levels sponsored by our partners. When you complete such a level you will receive a special achievement trophy on behalf of our sponsors.  
 These levels are easily recognizable, the sponsor logo will be placed on the game board background.
 
+## Improvements
+* Add sound
+* Fix bugs: click on gameboard, speed increase on restart, scroll
+
