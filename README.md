@@ -13,17 +13,18 @@
     * Supplemental Persona
     * Negative Persona
 * [Questions, Options, Criteria (QOC)](https://github.com/danielamariei/tetwix#questions-options-criteria-qoc)
-  * Game Speed Settings
-  * Board Style
-  * Input Types
+  * [Game Speed Settings](https://github.com/danielamariei/tetwix#game-speed-settings)
+  * [Board Style](https://github.com/danielamariei/tetwix#board-style)
+  * [Input Types](https://github.com/danielamariei/tetwix#input-types)
 * [Design Ideas](https://github.com/danielamariei/tetwix#design-ideas)
-  * Sketches
-  * Wireframes
-  * Storyboards
+  * [Sketches](https://github.com/danielamariei/tetwix#sketches)
+  * [Wireframes](https://github.com/danielamariei/tetwix#wireframes)
+  * [Storyboards](https://github.com/danielamariei/tetwix#storyboards)
 * [Usability Testing](https://github.com/danielamariei/tetwix#usability-testing)
 * [User Guide](https://github.com/danielamariei/tetwix#user-guide)
-   * HTML5
-   * Video Demo
+   * User Guide Instructions
+   * Play the game
+   * You can see a demo of the game here
 * [Improvements](https://github.com/danielamariei/tetwix#improvements)    
 * [Bibliography](https://github.com/danielamariei/tetwix#bibliography)
 
@@ -317,6 +318,7 @@ In a game with a split style board, players will receive point when they clear a
 
 In a game with a model style board, players will receive points in regards to how well they match the given model and a minimum percentage is required to pass to the next level. Pieces can be moved freely on the board and all power ups are available. 
 
+### Sketches
 
 #### Home screen
 ![](https://github.com/danielamariei/tetwix/blob/master/wiki-resources/images/wireframes/wireframe-1.png)
