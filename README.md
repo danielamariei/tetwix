@@ -1,25 +1,25 @@
-* Introduction
-* Project Identity
-* Project Objectives
-* User Needs
+* [Introduction](https://github.com/danielamariei/tetwix#introduction)
+* [Project Identity](https://github.com/danielamariei/tetwix#project-identity)
+* [Project Objectives](https://github.com/danielamariei/tetwix#project-objectives)
+* [User Needs](https://github.com/danielamariei/tetwix#user-needs)
   * Primary Persona
   * Secondary Persona
   * Supplemental Persona
   * Negative Persona
-* Questions, Options, Criteria (QOC)
+* [Questions, Options, Criteria (QOC)](https://github.com/danielamariei/tetwix#questions-options-criteria-qoc)
   * Game Speed Settings
   * Board Style
   * Input Types
-* Design Ideas
+* [Design Ideas](https://github.com/danielamariei/tetwix#design-ideas)
   * Sketches
   * Wireframes
   * Storyboards
-* Usability Testing
-* User Guide
+* [Usability Testing](https://github.com/danielamariei/tetwix#usability-testing)
+* [User Guide](https://github.com/danielamariei/tetwix#user-guide)
    * HTML5
    * Video Demo
-* Improvements    
-* Bibliography
+* [Improvements](https://github.com/danielamariei/tetwix#improvements)    
+* [Bibliography](https://github.com/danielamariei/tetwix#bibliography)
 
 
 ## Introduction
@@ -339,6 +339,11 @@ The usability test comprises the following list of steps:
 * [Play the game](https://danielamariei.github.io/tetwix/serverless/)
 * [You can see a demo of the game here](https://vimeo.com/98003746) 
 
+## Improvements
+* Add sound for gameplay
+* Add voice commands support
+* Fix bugs: click on gameboard, speed increase on restart, scroll
+
 ## Bibliography
 * Sabin-Corneliu Buraga, HCI Course: https://profs.info.uaic.ro/~busaco
 * Ștefan Negru, HCI Laboratory: https://profs.info.uaic.ro/~stefan.negru
@@ -349,9 +354,4 @@ The usability test comprises the following list of steps:
 * Donald A. Norman, The Design of Everyday Things, Basic Books, 2002
 * Jesse James Garrett, The Elements of User Experience: User-Centered Design for the Web and Beyond (2nd Edition) (Voices That Matter), New Riders, 2010
 * Primary persona image source: https://secure.flickr.com/photos/15472273@N07/
-
-
-## Improvements
-* Add sound
-* Fix bugs: click on gameboard, speed increase on restart, scroll
 
