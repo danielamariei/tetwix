@@ -26,6 +26,7 @@
    * Play the game
    * You can see a demo of the game here
 * [Improvements](https://github.com/danielamariei/tetwix#improvements)    
+* [Development](https://github.com/danielamariei/tetwix#development)
 * [Bibliography](https://github.com/danielamariei/tetwix#bibliography)
 
 
@@ -370,6 +371,13 @@ The usability test comprises the following list of steps:
 * Add sound for gameplay
 * Add voice commands support
 * Fix bugs: click on gameboard, speed increase on restart, scroll
+
+## Development
+Folder structure:
+* `docs`: project documentation, now available in the main `README.md`, keeping it for reference
+* `serverless`: game files including, images, javascripts, stylesheets, the game guide and index.html
+* `usability_plan`: usability plan
+* `wiki-resource`: dump of various useful files from the first storage location inluding: personas in html format, images, and txt files with various notes
 
 ## Bibliography
 * Sabin-Corneliu Buraga, HCI Course: https://profs.info.uaic.ro/~busaco
