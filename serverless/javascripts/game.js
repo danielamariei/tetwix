@@ -60,6 +60,7 @@ var game = {
                 game.state.isGameOver = false;
 
                 game.score = 0;
+                game.speed = 1200;
                 game.level = 1;
 
                 Player1.restart();
