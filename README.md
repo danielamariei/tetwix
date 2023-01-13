@@ -2,10 +2,16 @@
 * [Project Identity](https://github.com/danielamariei/tetwix#project-identity)
 * [Project Objectives](https://github.com/danielamariei/tetwix#project-objectives)
 * [User Needs](https://github.com/danielamariei/tetwix#user-needs)
-  * Primary Persona
-  * Secondary Persona
-  * Supplemental Persona
-  * Negative Persona
+  * [Cognitive Processing](https://github.com/danielamariei/tetwix#cognitive-processing)
+  * [Experience Goals](https://github.com/danielamariei/tetwix#experience-goals-visceral-cognitive-processing)
+  * [End Goals](https://github.com/danielamariei/tetwix#end-goals-behavioral-cognitive-processing)
+  * [Life Goals](https://github.com/danielamariei/tetwix#life-goals-reflective-cognitive-processing)
+  * [Pseudo-personas](https://github.com/danielamariei/tetwix#pseudo-personas)
+  * [Personas](https://github.com/danielamariei/tetwix#pseudo-personas)
+    * Primary Persona
+    * Secondary Persona
+    * Supplemental Persona
+    * Negative Persona
 * [Questions, Options, Criteria (QOC)](https://github.com/danielamariei/tetwix#questions-options-criteria-qoc)
   * Game Speed Settings
   * Board Style
