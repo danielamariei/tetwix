@@ -104,13 +104,22 @@ What game speed selecting mechanism should we use in the user interface?
 
 #### Options
 O1: Drop-down list
+<img src="https://github.com/danielamariei/tetwix/blob/master/wiki-resources/images/qoc/qoc-game-speed-drop-down.jpg" width="200px">
+<!--
 ![](https://github.com/danielamariei/tetwix/blob/master/wiki-resources/images/qoc/qoc-game-speed-drop-down.jpg)
+-->
 
 O2: Radio buttons
+<img src="https://github.com/danielamariei/tetwix/blob/master/wiki-resources/images/qoc/qoc-game-speed-radio.jpg" width="200px">
+<!--
 ![](https://github.com/danielamariei/tetwix/blob/master/wiki-resources/images/qoc/qoc-game-speed-radio.jpg)
+-->
 
 O3: Range input
+<img src="https://github.com/danielamariei/tetwix/blob/master/wiki-resources/images/qoc/qoc-game-speed-range.jpg" width="200px">
+<!--
 ![](https://github.com/danielamariei/tetwix/blob/master/wiki-resources/images/qoc/qoc-game-speed-range.jpg)
+-->
 
 #### Criteria
 
