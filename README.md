@@ -151,13 +151,22 @@ What board style should we use in the user interface?
 
 #### Options
 O1: Single
+<img src="https://github.com/danielamariei/tetwix/blob/master/wiki-resources/images/gameboards/gameboard-single-sketch.jpg" width="200px">
+<!--
 ![](https://github.com/danielamariei/tetwix/blob/master/wiki-resources/images/gameboards/gameboard-single-sketch.jpg)
+-->
 
 O2: Split
+<img src="https://github.com/danielamariei/tetwix/blob/master/wiki-resources/images/gameboards/gameboard-split-sketch.jpg" width="200px">
+<!--
 ![](https://github.com/danielamariei/tetwix/blob/master/wiki-resources/images/gameboards/gameboard-split-sketch.jpg)
+-->
 
 O3: Model
+<img src="https://github.com/danielamariei/tetwix/blob/master/wiki-resources/images/gameboards/gameboard-model-sketch.jpg" width="200px">
+<!--
 ![](https://github.com/danielamariei/tetwix/blob/master/wiki-resources/images/gameboards/gameboard-model-sketch.jpg)
+-->
 
 
 #### Criteria
