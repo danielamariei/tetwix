@@ -34,12 +34,15 @@ $("#game-wrapper" ).delegate("#share-score", "click", function() {
 });
 
 $("#game-wrapper" ).delegate("#restart", "click", function() {
+    $("#game-over").hide();
+//    $("#game-wrapper").show();
+//    $("#start-screen").hide();
     game.controls.restart();
+    game.controls.startNewGame();
 });
 
 /**-----------------*/
 $("#game-wrapper" ).delegate("#start", "click", function() {
-
     $("#game-wrapper").hide();
     $('#start-screen').show();
     game.controls.restart()
