@@ -1,3 +1,11 @@
+<p align="center">
+  <a href="https://raw.githubusercontent.com/danielamariei/tetwix/serverless/wiki-resources/tetwix-demo-video.mp4">
+    <img src="https://raw.githubusercontent.com/danielamariei/tetwix/serverless/wiki-resources/tetwix-demo-thumbnail.png">
+  </a>
+</p>
+
+
+
 * [Introduction](https://github.com/danielamariei/tetwix#introduction)
 * [Project Identity](https://github.com/danielamariei/tetwix#project-identity)
 * [Project Objectives](https://github.com/danielamariei/tetwix#project-objectives)
