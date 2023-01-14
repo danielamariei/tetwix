@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://raw.githubusercontent.com/danielamariei/tetwix/serverless/wiki-resources/tetwix-demo-video.mp4">
+  <a  target="_blank" href="https://raw.githubusercontent.com/danielamariei/tetwix/serverless/wiki-resources/tetwix-demo-video.mp4">
     <img src="https://raw.githubusercontent.com/danielamariei/tetwix/serverless/wiki-resources/tetwix-demo-thumbnail.png">
   </a>
 </p>
