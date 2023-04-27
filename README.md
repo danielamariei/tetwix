@@ -53,6 +53,10 @@
 
 The game proposes a modern version of Tetris, it supports multiplayer game modes, while user(s) are able to use natural I/O devices and interaction methods such as: gestural ([Leap Motion](https://www.ultraleap.com/product/leap-motion-controller/)), locomotion ([Makey Makey](https://makeymakey.com/)), etc. The game is attractive for various population segments and can be used as a means for having fun or to carry out cardio exercises, a serious game, and many others.
 
+**Contributors**
+* https://github.com/danielamariei/
+* https://github.com/riquack/
+
 
 ## Project Identity
 ### Project Identity
